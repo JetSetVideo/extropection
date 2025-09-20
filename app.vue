@@ -3,13 +3,7 @@
     <!-- Background animation -->
     <div class="absolute inset-0 bg-black z-0" id="background"></div>
 
-    <!-- Navbar -->
-    <UNavbar class="fixed top-0 left-0 right-0 z-10 transition-all duration-300" :class="{ 'opacity-0 pointer-events-none': !atTop }">
-      <template #center>
-        <h1 class="text-4xl font-bold" style="font-family: 'Orbitron', sans-serif;">Extrospection</h1>
-      </template>
-    </UNavbar>
-
+    <Navbar />
     <!-- Content -->
     <div class="relative z-10 p-4 text-white">
       <NuxtPage />
@@ -26,6 +20,14 @@ const atTop = computed(() => y.value === 0)
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap');
+
+@font-face {
+       font-family: 'Ethnocentric'; /* Name it whatever you want to reference it by */
+       src: url('~assets/fonts/Ethnocentric Rg It.otf') format('otf'); /* Adjust file name/extension as needed */
+       font-weight: 700; /* Match the weight you need, e.g., bold */
+       font-style: normal; /* Or italic if applicable */
+       font-display: swap; /* Recommended for better performance */
+     }
 
 #background {
   background: radial-gradient(circle at center, black 0%, #330000 50%, black 100%);
