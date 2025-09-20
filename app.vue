@@ -7,6 +7,7 @@
     <!-- Content -->
     <div class="relative z-10 p-4 text-white">
       <NuxtPage />
+      <div>test</div>
     </div>
   </div>
 </template>
