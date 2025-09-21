@@ -25,10 +25,20 @@
 
 <style scoped>
 main {
-  @apply bg-white text-black dark:bg-gray-900 dark:text-white;
+  background-color: #ffffff;
+  color: #000000;
+}
+
+.dark main {
+  background-color: #111827; /* gray-900 */
+  color: #ffffff;
 }
 
 .text-muted {
-  @apply text-gray-600 dark:text-gray-400;
+  color: #4b5563; /* gray-600 */
+}
+
+.dark .text-muted {
+  color: #9ca3af; /* gray-400 */
 }
 </style>
