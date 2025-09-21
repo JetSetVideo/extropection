@@ -1,11 +1,11 @@
 <template>
-  <div class="relative min-h-screen bg-black">
+  <div class="relative min-h-screen">
     <!-- Background animation -->
-    <div class="absolute inset-0 bg-black z-0" id="background"></div>
+    <div class="absolute inset-0 z-0" id="background"></div>
 
     <Navbar />
     <!-- Content -->
-    <div class="relative z-10 p-4 text-white">
+    <div class="relative z-10 p-4">
       <NuxtPage />
     </div>
     <Footer />
@@ -32,20 +32,31 @@ const atTop = computed(() => y.value === 0)
 
 :root {
   --bg-dark: #000000;
-  --text-light: #ffffff;
-  --accent-red: rgba(255, 0, 0, 0.2);
+  --bg-light: #ffffff;
+  --text-dark: #ffffff;
+  --text-light: #000000;
+  --accent-red-dark: rgba(255, 0, 0, 0.2);
+  --accent-red-light: rgba(255, 0, 0, 0.1);
   --shadow-color: rgba(0,0,0,0.5);
 }
 
+body {
+  background-color: var(--bg-light);
+  color: var(--text-light);
+}
+
+.dark body {
+  background-color: var(--bg-dark);
+  color: var(--text-dark);
+}
+
 #background {
-  background: radial-gradient(circle at center, var(--bg-dark) 0%, #330000 50%, var(--bg-dark) 100%);
+  background: radial-gradient(circle at center, var(--bg-light) 0%, #ffcccc 50%, var(--bg-light) 100%);
   animation: pulse 10s infinite;
 }
 
-@keyframes pulse {
-  0% { opacity: 1; }
-  50% { opacity: 0.8; }
-  100% { opacity: 1; }
+.dark #background {
+  background: radial-gradient(circle at center, var(--bg-dark) 0%, #330000 50%, var(--bg-dark) 100%);
 }
 
 /* Add rays effect */
@@ -56,9 +67,13 @@ const atTop = computed(() => y.value === 0)
   left: 50%;
   width: 100%;
   height: 100%;
-  background: repeating-linear-gradient(0deg, var(--accent-red), var(--accent-red) 1px, transparent 1px, transparent 20px);
+  background: repeating-linear-gradient(0deg, var(--accent-red-light), var(--accent-red-light) 1px, transparent 1px, transparent 20px);
   transform: translate(-50%, -50%) rotate(0deg);
   animation: rotate 30s linear infinite, colorMorph 15s ease-in-out infinite;
+}
+
+.dark #background::before {
+  background: repeating-linear-gradient(0deg, var(--accent-red-dark), var(--accent-red-dark) 1px, transparent 1px, transparent 20px);
 }
 
 #background::after {
@@ -68,9 +83,13 @@ const atTop = computed(() => y.value === 0)
   left: 50%;
   width: 100%;
   height: 100%;
-  background: repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1) 1px, transparent 1px, transparent 20px);
+  background: repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1) 1px, transparent 1px, transparent 20px);
   transform: translate(-50%, -50%) rotate(45deg);
   animation: rotate 45s linear infinite reverse;
+}
+
+.dark #background::after {
+  background: repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1) 1px, transparent 1px, transparent 20px);
 }
 
 @keyframes rotate {

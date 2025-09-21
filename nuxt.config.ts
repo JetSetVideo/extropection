@@ -7,4 +7,9 @@ export default defineNuxtConfig({
   },
   modules: ['@nuxt/fonts', '@nuxt/ui', '@vueuse/nuxt'],
   plugins: ['~/plugins/fontawesome.client.js'],
+  ui: {
+    colorMode: {
+      preference: 'dark'
+    }
+  }
 });

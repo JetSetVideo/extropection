@@ -17,9 +17,9 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <footer class="fixed bottom-0 left-0 right-0 z-10 bg-gray-900 text-white p-4 transition-all duration-300 shadow-lg shadow-black/50" :class="{ 'opacity-0 pointer-events-none': !scrolled }" style="box-shadow: inset 0 -2px 4px rgba(0,0,0,0.3);">
+  <footer class="fixed bottom-0 left-0 right-0 z-10 p-4 transition-all duration-300 shadow-lg" :class="{ 'opacity-0 pointer-events-none': !scrolled }" style="box-shadow: inset 0 -2px 4px rgba(0,0,0,0.3);">
     <div class="max-w-7xl mx-auto flex justify-center space-x-6">
-      <a href="https://twitter.com" target="_blank" class="text-white hover:text-gray-300">
+      <a href="https://twitter.com" target="_blank" class="hover:text-gray-700 dark:hover:text-gray-300">
         <FontAwesomeIcon icon="fa-brands fa-x-twitter" size="2x" />
       </a>
       <a href="https://facebook.com" target="_blank" class="text-white hover:text-gray-300">
@@ -43,6 +43,11 @@ onUnmounted(() => {
 
 <style scoped>
 footer {
+  @apply bg-gray-100 text-black dark:bg-gray-900 dark:text-white shadow-black/50 dark:shadow-black/50;
   margin: 0 1rem 1rem;
+}
+
+a {
+  @apply text-black dark:text-white;
 }
 </style>
