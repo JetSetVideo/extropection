@@ -1,5 +1,5 @@
 <template>
-  <div class="relative min-h-screen">
+  <div class="relative min-h-screen bg-black">
     <!-- Background animation -->
     <div class="absolute inset-0 bg-black z-0" id="background"></div>
 
@@ -7,8 +7,8 @@
     <!-- Content -->
     <div class="relative z-10 p-4 text-white">
       <NuxtPage />
-      <div>test</div>
     </div>
+    <Footer />
   </div>
 </template>
 
@@ -30,9 +30,16 @@ const atTop = computed(() => y.value === 0)
        font-display: swap; /* Recommended for better performance */
      }
 
+:root {
+  --bg-dark: #000000;
+  --text-light: #ffffff;
+  --accent-red: rgba(255, 0, 0, 0.2);
+  --shadow-color: rgba(0,0,0,0.5);
+}
+
 #background {
-  background: radial-gradient(circle at center, black 0%, #330000 50%, black 100%);
-  animation: pulse 5s infinite;
+  background: radial-gradient(circle at center, var(--bg-dark) 0%, #330000 50%, var(--bg-dark) 100%);
+  animation: pulse 10s infinite;
 }
 
 @keyframes pulse {
@@ -49,9 +56,9 @@ const atTop = computed(() => y.value === 0)
   left: 50%;
   width: 100%;
   height: 100%;
-  background: repeating-linear-gradient(0deg, rgba(255, 0, 0, 0.2), rgba(255, 0, 0, 0.2) 1px, transparent 1px, transparent 20px);
+  background: repeating-linear-gradient(0deg, var(--accent-red), var(--accent-red) 1px, transparent 1px, transparent 20px);
   transform: translate(-50%, -50%) rotate(0deg);
-  animation: rotate 10s linear infinite;
+  animation: rotate 30s linear infinite, colorMorph 15s ease-in-out infinite;
 }
 
 #background::after {
@@ -63,11 +70,19 @@ const atTop = computed(() => y.value === 0)
   height: 100%;
   background: repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1) 1px, transparent 1px, transparent 20px);
   transform: translate(-50%, -50%) rotate(45deg);
-  animation: rotate 15s linear infinite reverse;
+  animation: rotate 45s linear infinite reverse;
 }
 
 @keyframes rotate {
   0% { transform: translate(-50%, -50%) rotate(0deg); }
   100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+@keyframes colorMorph {
+  0% { --accent-red: rgba(255, 0, 0, 0.1); }
+  25% { --accent-red: rgba(255, 0, 0, 0.3); } /* sin approx */
+  50% { --accent-red: rgba(255, 0, 0, 0.1); }
+  75% { --accent-red: rgba(255, 0, 0, 0.3); } /* cos approx */
+  100% { --accent-red: rgba(255, 0, 0, 0.1); }
 }
 </style>

@@ -1,45 +1,53 @@
-This is a website for our political party "Extrospection".
+# Extrospection Website Development
 
-It is a website that will be used to share our ideas, meetings, social media and our policies.
+This is the website for our political party &quot;Extrospection&quot;.
 
-# Features
+It serves to share our ideas, meetings, social media, and policies.
 
-- A home page with a title and a description.
-- A page with our ideas and our policies.
-- A page with our team.
-- A page with our contact information.
-- A page with our history.
-- A page with our values.
-- A page with our principles.
-- A page with our policies.
+## Features
 
-# Design
+- Home page with title, quote, and key messages.
+- Pages for ideas, policies, team, contact, history, values, and principles.
+- Responsive design with dark theme.
+- Navbar that disappears on scroll.
+- Footer with social links that appears on scroll.
+- Animated background with futuristic effects.
 
-- A dark theme with a futuristic look.
-- A clean design with a modern look.
-- A design that is easy to use and navigate.
-- A design that is easy to read and understand.
-- A design that is easy to share and social media.
-- Always use RGBa colors.
-- Always use rounded corners.
-- Always use gradients.
-- Always use shadows.
-- Always use animations.
-- Always use responsive design.
-- Always use a font that is easy to read and understand.
-- Use icons for the social media links.
+## Design Principles
 
-# Technologies
+- Dark theme with futuristic aesthetics.
+- Clean, modern layout easy to navigate and read.
+- Use RGBA colors, rounded corners, gradients, shadows, animations.
+- Responsive for all devices.
+- Easy sharing via social media.
+- Use icons for social links (Font Awesome).
+- CSS variables for consistent theming (e.g., --bg-dark, --text-light).
 
-- Nuxt 4
-- Tailwind CSS
+## Technologies
+
+- Nuxt 3 (updated from 4, but using 3.8.2)
+- Tailwind CSS (via @nuxt/ui)
 - Vue 3
 - Vite
 - TypeScript
-- Vercel
+- Vercel for deployment
 - Cloudflare
 - Google Fonts
-- Font Awesome
+- Font Awesome for icons
 - Google Analytics
 - Google Tag Manager
 - Google Search Console
+- @vueuse/nuxt for utilities
+- @nuxt/fonts for font management
+- @nuxt/ui for UI components
+
+## Installation and Setup
+
+- Install dependencies with pnpm install
+- Run dev server: pnpm dev
+
+## TODO
+
+- Add more pages as listed in features.
+- Implement authentication if needed.
+- Optimize performance and SEO.
