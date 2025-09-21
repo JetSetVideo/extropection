@@ -30,13 +30,18 @@ onUnmounted(() => {
 
 <style scoped>
 .navbar {
-  @apply bg-gray-100 text-black dark:bg-gray-900 dark:text-white shadow-black/50 dark:shadow-black/50;
+  background-color: #f3f4f6; /* bg-gray-100 */
+  color: #000000; /* text-black */
+  box-shadow: 0 10px 15px -3px rgba(0,0,0,0.5), 0 4px 6px -2px rgba(0,0,0,0.5); /* shadow-lg with black/50 */
   background: linear-gradient(135deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0) 50%, rgba(0,0,0,0.1) 100%);
   background-size: 200% 200%;
   animation: reflect 10s linear infinite;
 }
 
 .dark .navbar {
+  background-color: #111827; /* dark:bg-gray-900 */
+  color: #ffffff; /* dark:text-white */
+  box-shadow: 0 10px 15px -3px rgba(0,0,0,0.5), 0 4px 6px -2px rgba(0,0,0,0.5); /* dark:shadow-black/50 */
   background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 50%, rgba(255,255,255,0.2) 100%);
 }
 
