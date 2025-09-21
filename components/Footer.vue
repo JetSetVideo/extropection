@@ -43,11 +43,23 @@ onUnmounted(() => {
 
 <style scoped>
 footer {
-  @apply bg-gray-100 text-black dark:bg-gray-900 dark:text-white shadow-black/50 dark:shadow-black/50;
+  background-color: #f3f4f6; /* bg-gray-100 */
+  color: #000000; /* text-black */
+  box-shadow: 0 10px 15px -3px rgba(0,0,0,0.5), 0 4px 6px -2px rgba(0,0,0,0.5); /* shadow-black/50 */
   margin: 0 1rem 1rem;
 }
 
+.dark footer {
+  background-color: #111827; /* dark:bg-gray-900 */
+  color: #ffffff; /* dark:text-white */
+  box-shadow: 0 10px 15px -3px rgba(0,0,0,0.5), 0 4px 6px -2px rgba(0,0,0,0.5); /* dark:shadow-black/50 */
+}
+
 a {
-  @apply text-black dark:text-white;
+  color: #000000; /* text-black */
+}
+
+.dark a {
+  color: #ffffff; /* dark:text-white */
 }
 </style>
