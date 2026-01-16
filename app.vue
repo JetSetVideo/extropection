@@ -8,7 +8,7 @@
 
     <Navbar />
     <!-- Content -->
-    <div class="relative z-10 px-4 sm:px-8 md:px-12 lg:px-20 pt-20 md:pt-24">
+    <div class="relative z-10 px-6 sm:px-10 md:px-16 lg:px-24 xl:px-32 pt-20 md:pt-24 max-w-screen-2xl mx-auto">
       <NuxtPage />
     </div>
     <Footer />
