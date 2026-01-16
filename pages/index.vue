@@ -1,92 +1,140 @@
 <script setup>
+import { ref } from 'vue'
+
+// Meet-up data (can be updated when there's a planned meet-up)
+const nextMeetup = ref(null) // Set to { date: '2026-02-15', time: '19:00', location: 'Paris', title: 'Nom du meet-up' } when planned
 </script>
 
 <template>
   <main class="main-content min-h-screen pb-24">
-    <!-- Hero Section -->
-    <section class="hero-section mb-12 md:mb-16 text-center">
-      <div class="hero-badge inline-block px-4 py-2 rounded-full mb-6 text-sm font-medium">
-        🇫🇷 Parti Libertarien Parisien
-      </div>
-      <h1 class="hero-title text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
-        Radical Prospérité
-      </h1>
-      <p class="hero-subtitle text-lg sm:text-xl md:text-2xl max-w-3xl mx-auto opacity-90">
-        Liberté • Responsabilité • Prospérité
-      </p>
-    </section>
-
-    <!-- Quote Section -->
-    <section class="quote-section mb-12 md:mb-16 p-6 md:p-8 rounded-2xl max-w-4xl mx-auto">
-      <blockquote class="text-xl md:text-2xl italic text-center mb-4">
-        « La justice sans la force est impuissante ; la force sans la justice est tyrannique. »
-      </blockquote>
-      <p class="text-base md:text-lg text-center opacity-70">— Blaise Pascal</p>
-    </section>
-
-    <!-- Mission Section -->
-    <section class="mission-section mb-12 md:mb-16 text-center">
-      <h2 class="section-title text-2xl sm:text-3xl md:text-4xl font-bold mb-6">Notre Mission</h2>
-      <p class="text-lg md:text-xl max-w-3xl mx-auto leading-relaxed">
-        Définir un nouveau modèle politique pour notre pays. Chaque génération devrait écrire ses lois. 
-        Dans notre société moderne, l'encre a été remplacée par le bit.
-      </p>
-    </section>
-
-    <!-- Values Grid -->
-    <section class="values-section mb-12 md:mb-16">
-      <h2 class="section-title text-2xl sm:text-3xl md:text-4xl font-bold mb-8 text-center">Nos Valeurs</h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <!-- Justice Card -->
-        <div class="value-card p-6 rounded-2xl">
-          <div class="card-icon mb-4">
-            <FontAwesomeIcon icon="fa-solid fa-scale-balanced" class="text-3xl md:text-4xl" />
-          </div>
-          <h3 class="text-xl md:text-2xl font-bold mb-3">Justice</h3>
-          <p class="text-sm md:text-base opacity-80">
-            Instaurer un contrôle judiciaire strict des juges et des procureurs. 
-            Un suivi rigoureux de leurs jugements et des conséquences sur la société.
-          </p>
+    <!-- Content Container with centered margins -->
+    <div class="content-container">
+      <!-- Hero Section -->
+      <section class="hero-section mb-12 md:mb-16 text-center">
+        <div class="hero-badge inline-block px-4 py-2 rounded-full mb-6 text-sm font-medium">
+          🇫🇷 Parti Libertarien Parisien
         </div>
+        <h1 class="hero-title text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
+          Radical Prospérité
+        </h1>
+        <p class="hero-subtitle text-lg sm:text-xl md:text-2xl max-w-3xl mx-auto opacity-90">
+          Liberté • Responsabilité • Prospérité
+        </p>
+      </section>
 
-        <!-- Liberté Card -->
-        <div class="value-card p-6 rounded-2xl">
-          <div class="card-icon mb-4">
-            <FontAwesomeIcon icon="fa-solid fa-dove" class="text-3xl md:text-4xl" />
+      <!-- Quote Section -->
+      <section class="quote-section mb-12 md:mb-16 p-6 md:p-8 rounded-2xl">
+        <blockquote class="text-xl md:text-2xl italic text-center mb-4">
+          « La justice sans la force est impuissante ; la force sans la justice est tyrannique. »
+        </blockquote>
+        <p class="text-base md:text-lg text-center opacity-70">— Blaise Pascal</p>
+      </section>
+
+      <!-- Next Meet-up Section -->
+      <section class="meetup-section mb-12 md:mb-16">
+        <h2 class="section-title text-2xl sm:text-3xl md:text-4xl font-bold mb-8 text-center">Prochain Meet-up</h2>
+        
+        <div v-if="nextMeetup" class="meetup-card p-6 md:p-8 rounded-2xl">
+          <div class="flex flex-col md:flex-row items-center md:items-start gap-6">
+            <div class="meetup-date-badge flex flex-col items-center justify-center p-4 rounded-xl min-w-24">
+              <span class="text-3xl font-bold">{{ new Date(nextMeetup.date).getDate() }}</span>
+              <span class="text-sm uppercase">{{ new Date(nextMeetup.date).toLocaleDateString('fr-FR', { month: 'short' }) }}</span>
+            </div>
+            <div class="flex-1 text-center md:text-left">
+              <h3 class="text-xl md:text-2xl font-bold mb-2">{{ nextMeetup.title }}</h3>
+              <div class="meetup-details flex flex-col sm:flex-row flex-wrap justify-center md:justify-start gap-4 text-sm opacity-80">
+                <span class="flex items-center justify-center md:justify-start gap-2">
+                  <FontAwesomeIcon icon="fa-solid fa-clock" />
+                  {{ nextMeetup.time }}
+                </span>
+                <span class="flex items-center justify-center md:justify-start gap-2">
+                  <FontAwesomeIcon icon="fa-solid fa-location-dot" />
+                  {{ nextMeetup.location }}
+                </span>
+              </div>
+            </div>
           </div>
-          <h3 class="text-xl md:text-2xl font-bold mb-3">Liberté</h3>
-          <p class="text-sm md:text-base opacity-80">
-            Défendre les libertés individuelles fondamentales. 
-            Réduire l'emprise de l'État sur la vie des citoyens.
-          </p>
         </div>
-
-        <!-- Prospérité Card -->
-        <div class="value-card p-6 rounded-2xl">
-          <div class="card-icon mb-4">
-            <FontAwesomeIcon icon="fa-solid fa-chart-line" class="text-3xl md:text-4xl" />
+        
+        <div v-else class="meetup-empty p-8 md:p-12 rounded-2xl text-center">
+          <div class="meetup-empty-icon mb-4">
+            <FontAwesomeIcon icon="fa-solid fa-calendar-xmark" class="text-4xl md:text-5xl" />
           </div>
-          <h3 class="text-xl md:text-2xl font-bold mb-3">Prospérité</h3>
-          <p class="text-sm md:text-base opacity-80">
-            Favoriser l'entrepreneuriat et l'innovation. 
-            Alléger la fiscalité pour libérer le potentiel économique.
-          </p>
+          <p class="text-lg md:text-xl font-medium opacity-80">Aucun meet-up prévu</p>
+          <p class="text-sm md:text-base opacity-60 mt-2">Suivez-nous pour être informé des prochains événements</p>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- Call to Action -->
-    <section class="cta-section text-center p-8 md:p-12 rounded-2xl max-w-4xl mx-auto">
-      <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">Rejoignez le Mouvement</h2>
-      <p class="text-lg md:text-xl mb-8 opacity-90">
-        Suivez-nous sur les réseaux sociaux et participez à la construction d'une France prospère.
-      </p>
-      <div class="flex flex-wrap justify-center gap-4">
-        <span class="cta-tag px-4 py-2 rounded-full text-sm font-medium">#RadicalProspérité</span>
-        <span class="cta-tag px-4 py-2 rounded-full text-sm font-medium">#LibertéParis</span>
-        <span class="cta-tag px-4 py-2 rounded-full text-sm font-medium">#FranceLibre</span>
-      </div>
-    </section>
+      <!-- Mission Section -->
+      <section class="mission-section mb-12 md:mb-16 text-center">
+        <h2 class="section-title text-2xl sm:text-3xl md:text-4xl font-bold mb-6">Notre Mission</h2>
+        <p class="text-lg md:text-xl max-w-3xl mx-auto leading-relaxed">
+          Définir un nouveau modèle politique pour notre pays. Chaque génération devrait écrire ses lois. 
+          Dans notre société moderne, l'encre a été remplacée par le bit.
+        </p>
+      </section>
+
+      <!-- Values Grid -->
+      <section class="values-section mb-12 md:mb-16">
+        <h2 class="section-title text-2xl sm:text-3xl md:text-4xl font-bold mb-8 text-center">Nos Valeurs</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- Justice Card -->
+          <div class="value-card p-6 rounded-2xl">
+            <div class="card-header flex items-center gap-4 mb-4">
+              <div class="card-icon-wrapper">
+                <FontAwesomeIcon icon="fa-solid fa-scale-balanced" class="text-2xl md:text-3xl" />
+              </div>
+              <h3 class="text-xl md:text-2xl font-bold">Justice</h3>
+            </div>
+            <p class="text-sm md:text-base opacity-80">
+              Instaurer un contrôle judiciaire strict des juges et des procureurs. 
+              Un suivi rigoureux de leurs jugements et des conséquences sur la société.
+            </p>
+          </div>
+
+          <!-- Liberté Card -->
+          <div class="value-card p-6 rounded-2xl">
+            <div class="card-header flex items-center gap-4 mb-4">
+              <div class="card-icon-wrapper">
+                <FontAwesomeIcon icon="fa-solid fa-dove" class="text-2xl md:text-3xl" />
+              </div>
+              <h3 class="text-xl md:text-2xl font-bold">Liberté</h3>
+            </div>
+            <p class="text-sm md:text-base opacity-80">
+              Défendre les libertés individuelles fondamentales. 
+              Réduire l'emprise de l'État sur la vie des citoyens.
+            </p>
+          </div>
+
+          <!-- Prospérité Card -->
+          <div class="value-card p-6 rounded-2xl">
+            <div class="card-header flex items-center gap-4 mb-4">
+              <div class="card-icon-wrapper">
+                <FontAwesomeIcon icon="fa-solid fa-chart-line" class="text-2xl md:text-3xl" />
+              </div>
+              <h3 class="text-xl md:text-2xl font-bold">Prospérité</h3>
+            </div>
+            <p class="text-sm md:text-base opacity-80">
+              Favoriser l'entrepreneuriat et l'innovation. 
+              Alléger la fiscalité pour libérer le potentiel économique.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Call to Action -->
+      <section class="cta-section text-center p-8 md:p-12 rounded-2xl">
+        <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">Rejoignez le Mouvement</h2>
+        <p class="text-lg md:text-xl mb-8 opacity-90">
+          Suivez-nous sur les réseaux sociaux et participez à la construction d'une France prospère.
+        </p>
+        <div class="flex flex-wrap justify-center gap-4">
+          <span class="cta-tag px-4 py-2 rounded-full text-sm font-medium">#RadicalProspérité</span>
+          <span class="cta-tag px-4 py-2 rounded-full text-sm font-medium">#LibertéParis</span>
+          <span class="cta-tag px-4 py-2 rounded-full text-sm font-medium">#FranceLibre</span>
+        </div>
+      </section>
+    </div>
   </main>
 </template>
 
@@ -97,6 +145,31 @@
 
 .dark .main-content {
   color: var(--text-dark);
+}
+
+/* Content Container - Centers all content with proper margins */
+.content-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+@media (min-width: 640px) {
+  .content-container {
+    padding: 0 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .content-container {
+    padding: 0 3rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .content-container {
+    padding: 0 4rem;
+  }
 }
 
 /* Hero Section */
@@ -154,6 +227,52 @@
   border-right: 4px solid #ff4d6d;
 }
 
+/* Meet-up Section */
+.meetup-card {
+  background: linear-gradient(135deg, rgba(0, 51, 153, 0.1) 0%, rgba(255, 255, 255, 0.95) 50%, rgba(200, 16, 46, 0.1) 100%);
+  border: 2px solid rgba(0, 51, 153, 0.3);
+  backdrop-filter: blur(10px);
+}
+
+.dark .meetup-card {
+  background: linear-gradient(135deg, rgba(77, 127, 191, 0.15) 0%, rgba(30, 30, 45, 0.95) 50%, rgba(255, 77, 109, 0.15) 100%);
+  border: 2px solid rgba(77, 127, 191, 0.4);
+}
+
+.meetup-date-badge {
+  background: linear-gradient(135deg, #003399 0%, #c8102e 100%);
+  color: white;
+}
+
+.dark .meetup-date-badge {
+  background: linear-gradient(135deg, #4d7fbf 0%, #ff4d6d 100%);
+}
+
+.meetup-empty {
+  background: linear-gradient(135deg, rgba(0, 51, 153, 0.05) 0%, rgba(200, 16, 46, 0.05) 100%);
+  border: 2px dashed rgba(0, 51, 153, 0.3);
+}
+
+.dark .meetup-empty {
+  background: linear-gradient(135deg, rgba(77, 127, 191, 0.1) 0%, rgba(255, 77, 109, 0.1) 100%);
+  border: 2px dashed rgba(77, 127, 191, 0.4);
+}
+
+.meetup-empty-icon {
+  background: linear-gradient(135deg, #003399 0%, #c8102e 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  opacity: 0.6;
+}
+
+.dark .meetup-empty-icon {
+  background: linear-gradient(135deg, #4d7fbf 0%, #ff4d6d 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
 /* Section Titles */
 .section-title {
   font-family: 'Orbitron', sans-serif;
@@ -178,7 +297,7 @@
   border-radius: 2px;
 }
 
-/* Value Cards */
+/* Value Cards - Icons and titles horizontally aligned */
 .value-card {
   background: rgba(255, 255, 255, 0.9);
   border: 1px solid rgba(0, 51, 153, 0.2);
@@ -204,14 +323,35 @@
   border-color: rgba(255, 77, 109, 0.5);
 }
 
-.card-icon {
+.card-header {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+}
+
+.card-icon-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, rgba(0, 51, 153, 0.15) 0%, rgba(200, 16, 46, 0.15) 100%);
+  flex-shrink: 0;
+}
+
+.dark .card-icon-wrapper {
+  background: linear-gradient(135deg, rgba(77, 127, 191, 0.2) 0%, rgba(255, 77, 109, 0.2) 100%);
+}
+
+.card-icon-wrapper svg {
   background: linear-gradient(135deg, #003399 0%, #c8102e 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
-.dark .card-icon {
+.dark .card-icon-wrapper svg {
   background: linear-gradient(135deg, #4d7fbf 0%, #ff4d6d 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -279,6 +419,11 @@
   
   .quote-section blockquote {
     font-size: 1.1rem;
+  }
+  
+  .card-icon-wrapper {
+    width: 40px;
+    height: 40px;
   }
 }
 
