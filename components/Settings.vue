@@ -1,13 +1,15 @@
 <script setup>
-import { useColorMode } from '@vueuse/core'
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 
+// Use Nuxt UI's built-in color mode composable
 const colorMode = useColorMode()
 const isOpen = ref(false)
 
 const toggleDropdown = () => {
   isOpen.value = !isOpen.value
 }
+
+const isDark = computed(() => colorMode.preference === 'dark')
 
 const toggleMode = () => {
   colorMode.preference = colorMode.preference === 'dark' ? 'light' : 'dark'
@@ -44,14 +46,14 @@ const closeDropdown = () => {
             class="dropdown-item w-full flex items-center gap-3 px-3 py-2 rounded-md transition-colors duration-200"
           >
             <FontAwesomeIcon 
-              :icon="colorMode.preference === 'dark' ? 'fa-solid fa-moon' : 'fa-solid fa-sun'" 
+              :icon="isDark ? 'fa-solid fa-moon' : 'fa-solid fa-sun'" 
               class="text-lg"
             />
             <span class="text-sm">
-              {{ colorMode.preference === 'dark' ? 'Mode Sombre' : 'Mode Clair' }}
+              {{ isDark ? 'Mode Sombre' : 'Mode Clair' }}
             </span>
             <span class="ml-auto">
-              <span class="toggle-indicator" :class="{ 'active': colorMode.preference === 'dark' }">
+              <span class="toggle-indicator" :class="{ 'active': isDark }">
                 <span class="toggle-dot"></span>
               </span>
             </span>

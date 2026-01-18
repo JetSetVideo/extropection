@@ -15,10 +15,10 @@ const nextMeetup = ref(null) // Set to { date: '2026-02-15', time: '19:00', loca
           🇫🇷 Parti Libertarien Parisien
         </div>
         <h1 class="hero-title text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
-          Radical Prospérité
+          Système politique décentralisé autonome
         </h1>
         <p class="hero-subtitle text-lg sm:text-xl md:text-2xl max-w-3xl mx-auto opacity-90">
-          Liberté • Responsabilité • Prospérité
+          Bonté • Fierté • Force
         </p>
       </section>
 
@@ -69,8 +69,11 @@ const nextMeetup = ref(null) // Set to { date: '2026-02-15', time: '19:00', loca
       <section class="mission-section mb-12 md:mb-16 text-center">
         <h2 class="section-title text-2xl sm:text-3xl md:text-4xl font-bold mb-6">Notre Mission</h2>
         <p class="text-lg md:text-xl max-w-3xl mx-auto leading-relaxed">
+          Objectif: Assurer la Gestion sociale optimale de la France
           Définir un nouveau modèle politique pour notre pays. Chaque génération devrait écrire ses lois. 
+          Offrir un appareil administratif efficace et transparent pour garantir la bonne gouvernance citoyenne de la France.
           Dans notre société moderne, l'encre a été remplacée par le bit.
+          Propposer une application pour offrir aux citoyens une maitrise totale de la gestion de l'état.
         </p>
       </section>
 
@@ -106,6 +109,24 @@ const nextMeetup = ref(null) // Set to { date: '2026-02-15', time: '19:00', loca
             </p>
           </div>
 
+          <!-- Technologie Card -->
+          <div class="value-card p-6 rounded-2xl">
+            <div class="card-header flex items-center gap-4 mb-4">
+              <div class="card-icon-wrapper">
+                <FontAwesomeIcon icon="fa-solid fa-dove" class="text-2xl md:text-3xl" />
+              </div>
+              <h3 class="text-xl md:text-2xl font-bold">Technologie</h3>
+            </div>
+            <p class="text-sm md:text-base opacity-80">
+              Intelligence artificielle pour la gestion de l'état et assister le citoyen dans la selection de ses opinions.
+              Blockchain pour garantir la transparence et la sécurité de la gestion de l'état.
+              Génétique pour l'agriculture et la médecine pour assurer la santé de la nation.
+              Robotique pour la gestion de l'état et la surveillance des citoyens.
+              Energie englobant toutes les sources afin d'assurer la pérennité de notre système économique.
+
+            </p>
+          </div>
+
           <!-- Prospérité Card -->
           <div class="value-card p-6 rounded-2xl">
             <div class="card-header flex items-center gap-4 mb-4">
@@ -128,10 +149,13 @@ const nextMeetup = ref(null) // Set to { date: '2026-02-15', time: '19:00', loca
         <p class="text-lg md:text-xl mb-8 opacity-90">
           Suivez-nous sur les réseaux sociaux et participez à la construction d'une France prospère.
         </p>
+        <p>
+          Donation:
+        </p>
         <div class="flex flex-wrap justify-center gap-4">
-          <span class="cta-tag px-4 py-2 rounded-full text-sm font-medium">#RadicalProspérité</span>
-          <span class="cta-tag px-4 py-2 rounded-full text-sm font-medium">#LibertéParis</span>
-          <span class="cta-tag px-4 py-2 rounded-full text-sm font-medium">#FranceLibre</span>
+          <span class="cta-tag px-4 py-2 rounded-full text-sm font-medium">Bitcoin:</span>
+          <span class="cta-tag px-4 py-2 rounded-full text-sm font-medium">Ethereum:</span>
+          <span class="cta-tag px-4 py-2 rounded-full text-sm font-medium">Solana:</span>
         </div>
       </section>
     </div>
