@@ -27,24 +27,24 @@ const navLinks = [
 
 <template>
   <!-- Main Navbar -->
-  <nav class="navbar fixed top-0 left-0 right-0 z-50 transition-all duration-300 shadow-lg px-4 md:px-8" :class="{ 'opacity-0 pointer-events-none': !atTop }">
-    <div class="navbar-content flex items-center justify-between h-16 md:h-20">
+  <nav class="navbar fixed top-0 z-50 transition-all duration-300 mx-4 md:mx-8 lg:mx-12 mt-3 rounded-2xl" :class="{ 'opacity-0 pointer-events-none': !atTop }">
+    <div class="navbar-content flex items-center justify-between h-16 md:h-20 px-4 md:px-6 lg:px-8">
       <!-- Logo/Home link -->
-      <NuxtLink to="/" class="home-link">
+      <NuxtLink to="/" class="home-link flex-shrink-0">
         <FontAwesomeIcon icon="fa-solid fa-house" class="text-xl md:text-2xl" />
       </NuxtLink>
       
       <!-- Centered Title -->
-      <NuxtLink to="/" class="title-link">
+      <NuxtLink to="/" class="title-link absolute left-1/2 transform -translate-x-1/2">
         <h1 class="title text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-center whitespace-nowrap">
           Radical Prospérité
         </h1>
       </NuxtLink>
       
       <!-- Right side: Adhesion button + Settings -->
-      <div class="flex items-center gap-3 md:gap-4">
+      <div class="flex items-center gap-3 md:gap-4 flex-shrink-0">
         <!-- Adhesion Button -->
-        <NuxtLink to="/adhesion" class="adhesion-btn px-3 py-1.5 md:px-4 md:py-2 rounded-full text-sm md:text-base font-semibold transition-all duration-300 hover:scale-105">
+        <NuxtLink to="/adhesion" class="adhesion-btn px-3 py-1.5 md:px-5 md:py-2.5 rounded-full text-sm md:text-base font-semibold transition-all duration-300 hover:scale-105">
           <FontAwesomeIcon icon="fa-solid fa-user-plus" class="mr-1 md:mr-2" />
           <span class="hidden sm:inline">Adhésion</span>
         </NuxtLink>
@@ -56,7 +56,7 @@ const navLinks = [
 
     <!-- Sub Navigation Bar -->
     <div class="sub-navbar border-t border-white/20">
-      <div class="flex items-center justify-center gap-1 sm:gap-2 md:gap-6 py-2 overflow-x-auto">
+      <div class="flex items-center justify-center gap-1 sm:gap-2 md:gap-6 py-2 px-4 overflow-x-auto">
         <NuxtLink 
           v-for="link in navLinks" 
           :key="link.path"
@@ -73,6 +73,8 @@ const navLinks = [
 
 <style scoped>
 .navbar {
+  left: 0;
+  right: 0;
   background: linear-gradient(135deg, 
     rgba(0, 51, 153, 0.95) 0%, 
     rgba(0, 51, 153, 0.85) 25%,
@@ -82,8 +84,13 @@ const navLinks = [
   );
   background-size: 300% 300%;
   animation: tricolorFlow 20s ease-in-out infinite;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-  backdrop-filter: blur(10px);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.25),
+    0 4px 16px rgba(0, 51, 153, 0.2),
+    0 2px 8px rgba(200, 16, 46, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
 }
 
 .dark .navbar {
@@ -96,6 +103,12 @@ const navLinks = [
   );
   background-size: 300% 300%;
   animation: tricolorFlow 20s ease-in-out infinite;
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.5),
+    0 4px 16px rgba(0, 30, 100, 0.3),
+    0 2px 8px rgba(140, 10, 30, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .title-link {
@@ -122,42 +135,71 @@ const navLinks = [
 .home-link {
   color: #003399;
   background: rgba(255, 255, 255, 0.9);
-  padding: 0.5rem;
+  padding: 0.6rem;
   border-radius: 50%;
   transition: all 0.3s ease;
   display: flex;
   align-items: center;
   justify-content: center;
+  box-shadow: 
+    0 3px 8px rgba(0, 0, 0, 0.15),
+    inset 0 1px 2px rgba(255, 255, 255, 0.8),
+    inset 0 -1px 2px rgba(0, 0, 0, 0.1);
 }
 
 .dark .home-link {
   color: #4d7fbf;
   background: rgba(30, 30, 45, 0.9);
+  box-shadow: 
+    0 3px 8px rgba(0, 0, 0, 0.3),
+    inset 0 1px 2px rgba(255, 255, 255, 0.15),
+    inset 0 -1px 2px rgba(0, 0, 0, 0.2);
 }
 
 .home-link:hover {
   transform: scale(1.1);
-  box-shadow: 0 0 15px rgba(0, 51, 153, 0.5);
+  box-shadow: 
+    0 0 15px rgba(0, 51, 153, 0.5),
+    0 5px 15px rgba(0, 0, 0, 0.2),
+    inset 0 1px 3px rgba(255, 255, 255, 0.9),
+    inset 0 -1px 2px rgba(0, 0, 0, 0.1);
 }
 
 .dark .home-link:hover {
-  box-shadow: 0 0 15px rgba(77, 127, 191, 0.5);
+  box-shadow: 
+    0 0 15px rgba(77, 127, 191, 0.5),
+    0 5px 15px rgba(0, 0, 0, 0.4),
+    inset 0 1px 3px rgba(255, 255, 255, 0.2),
+    inset 0 -1px 2px rgba(0, 0, 0, 0.2);
 }
 
 .adhesion-btn {
   background: linear-gradient(135deg, #003399 0%, #c8102e 100%);
   color: white;
   border: 2px solid rgba(255, 255, 255, 0.3);
-  box-shadow: 0 4px 15px rgba(0, 51, 153, 0.3);
+  box-shadow: 
+    0 4px 15px rgba(0, 51, 153, 0.3),
+    0 2px 6px rgba(0, 0, 0, 0.2),
+    inset 0 1px 2px rgba(255, 255, 255, 0.4),
+    inset 0 -1px 2px rgba(0, 0, 0, 0.15);
 }
 
 .dark .adhesion-btn {
   background: linear-gradient(135deg, #4d7fbf 0%, #ff4d6d 100%);
   border: 2px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 
+    0 4px 15px rgba(77, 127, 191, 0.3),
+    0 2px 6px rgba(0, 0, 0, 0.3),
+    inset 0 1px 2px rgba(255, 255, 255, 0.3),
+    inset 0 -1px 2px rgba(0, 0, 0, 0.2);
 }
 
 .adhesion-btn:hover {
-  box-shadow: 0 6px 25px rgba(200, 16, 46, 0.5);
+  box-shadow: 
+    0 6px 25px rgba(200, 16, 46, 0.5),
+    0 4px 12px rgba(0, 0, 0, 0.25),
+    inset 0 1px 3px rgba(255, 255, 255, 0.5),
+    inset 0 -1px 2px rgba(0, 0, 0, 0.1);
   border-color: rgba(255, 255, 255, 0.6);
 }
 
@@ -172,17 +214,26 @@ const navLinks = [
 .nav-link {
   color: rgba(255, 255, 255, 0.9);
   background: rgba(255, 255, 255, 0.1);
+  box-shadow: 
+    inset 0 1px 1px rgba(255, 255, 255, 0.2),
+    inset 0 -1px 1px rgba(0, 0, 0, 0.1);
 }
 
 .nav-link:hover {
   background: rgba(255, 255, 255, 0.25);
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  box-shadow: 
+    0 4px 12px rgba(0, 0, 0, 0.2),
+    inset 0 1px 2px rgba(255, 255, 255, 0.35),
+    inset 0 -1px 2px rgba(0, 0, 0, 0.15);
 }
 
 .nav-link.router-link-active {
   background: linear-gradient(135deg, rgba(0, 51, 153, 0.6) 0%, rgba(200, 16, 46, 0.6) 100%);
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  box-shadow: 
+    0 2px 10px rgba(0, 0, 0, 0.3),
+    inset 0 1px 2px rgba(255, 255, 255, 0.3),
+    inset 0 -1px 2px rgba(0, 0, 0, 0.2);
 }
 
 @keyframes tricolorFlow {

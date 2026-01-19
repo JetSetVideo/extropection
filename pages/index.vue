@@ -67,9 +67,11 @@ const nextMeetup = ref(null) // Set to { date: '2026-02-15', time: '19:00', loca
 
       <!-- Mission Section -->
       <section class="mission-section mb-12 md:mb-16 text-center">
+        <h3>Objectif:</h3> 
+        <p>Assurer la Gestion sociale optimale de la France</p>
         <h2 class="section-title text-2xl sm:text-3xl md:text-4xl font-bold mb-6">Notre Mission</h2>
         <p class="text-lg md:text-xl max-w-3xl mx-auto leading-relaxed">
-          Objectif: Assurer la Gestion sociale optimale de la France
+
           Définir un nouveau modèle politique pour notre pays. Chaque génération devrait écrire ses lois. 
           Offrir un appareil administratif efficace et transparent pour garantir la bonne gouvernance citoyenne de la France.
           Dans notre société moderne, l'encre a été remplacée par le bit.
@@ -205,12 +207,21 @@ const nextMeetup = ref(null) // Set to { date: '2026-02-15', time: '19:00', loca
   background: linear-gradient(135deg, rgba(0, 51, 153, 0.15) 0%, rgba(200, 16, 46, 0.15) 100%);
   border: 1px solid rgba(0, 51, 153, 0.3);
   color: var(--text-light);
+  padding: 0.75rem 1.5rem;
+  box-shadow: 
+    0 4px 12px rgba(0, 51, 153, 0.12),
+    inset 0 1px 2px rgba(255, 255, 255, 0.5),
+    inset 0 -1px 2px rgba(0, 0, 0, 0.05);
 }
 
 .dark .hero-badge {
   background: linear-gradient(135deg, rgba(77, 127, 191, 0.2) 0%, rgba(255, 77, 109, 0.2) 100%);
   border: 1px solid rgba(77, 127, 191, 0.4);
   color: var(--text-dark);
+  box-shadow: 
+    0 4px 12px rgba(0, 0, 0, 0.25),
+    inset 0 1px 2px rgba(255, 255, 255, 0.12),
+    inset 0 -1px 2px rgba(0, 0, 0, 0.15);
 }
 
 .hero-title {
@@ -302,7 +313,8 @@ const nextMeetup = ref(null) // Set to { date: '2026-02-15', time: '19:00', loca
   font-family: 'Orbitron', sans-serif;
   color: var(--text-light);
   position: relative;
-  display: inline-block;
+  display: block;
+  width: 100%;
 }
 
 .dark .section-title {
@@ -312,60 +324,126 @@ const nextMeetup = ref(null) // Set to { date: '2026-02-15', time: '19:00', loca
 .section-title::after {
   content: '';
   position: absolute;
-  bottom: -8px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 60%;
-  height: 3px;
-  background: linear-gradient(90deg, #003399 0%, #c8102e 100%);
+  bottom: -12px;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    #003399 15%, 
+    #c8102e 85%, 
+    transparent 100%
+  );
   border-radius: 2px;
+  box-shadow: 
+    0 2px 8px rgba(0, 51, 153, 0.3),
+    0 2px 8px rgba(200, 16, 46, 0.3);
+}
+
+.dark .section-title::after {
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    #4d7fbf 15%, 
+    #ff4d6d 85%, 
+    transparent 100%
+  );
+  box-shadow: 
+    0 2px 8px rgba(77, 127, 191, 0.4),
+    0 2px 8px rgba(255, 77, 109, 0.4);
 }
 
 /* Value Cards - Icons and titles horizontally aligned */
 .value-card {
-  background: rgba(255, 255, 255, 0.9);
-  border: 1px solid rgba(0, 51, 153, 0.2);
-  backdrop-filter: blur(10px);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 249, 250, 0.9) 100%);
+  border: 1px solid rgba(0, 51, 153, 0.15);
+  border-radius: 20px;
+  backdrop-filter: blur(12px);
   transition: all 0.3s ease;
   color: var(--text-light);
+  box-shadow: 
+    0 8px 24px rgba(0, 51, 153, 0.08),
+    0 4px 12px rgba(200, 16, 46, 0.06),
+    0 2px 6px rgba(0, 0, 0, 0.05),
+    inset 0 1px 2px rgba(255, 255, 255, 0.9),
+    inset 0 -1px 2px rgba(0, 0, 0, 0.03);
 }
 
 .dark .value-card {
-  background: rgba(30, 30, 45, 0.9);
-  border: 1px solid rgba(77, 127, 191, 0.3);
+  background: linear-gradient(180deg, rgba(40, 40, 55, 0.95) 0%, rgba(25, 25, 38, 0.9) 100%);
+  border: 1px solid rgba(77, 127, 191, 0.25);
   color: var(--text-dark);
+  box-shadow: 
+    0 8px 24px rgba(0, 0, 0, 0.25),
+    0 4px 12px rgba(77, 127, 191, 0.1),
+    0 2px 6px rgba(255, 77, 109, 0.08),
+    inset 0 1px 2px rgba(255, 255, 255, 0.08),
+    inset 0 -1px 2px rgba(0, 0, 0, 0.15);
 }
 
 .value-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 20px 40px rgba(0, 51, 153, 0.15), 0 10px 20px rgba(200, 16, 46, 0.1);
-  border-color: rgba(200, 16, 46, 0.4);
+  transform: translateY(-8px);
+  box-shadow: 
+    0 24px 48px rgba(0, 51, 153, 0.15),
+    0 12px 24px rgba(200, 16, 46, 0.1),
+    0 6px 12px rgba(0, 0, 0, 0.08),
+    inset 0 1px 3px rgba(255, 255, 255, 1),
+    inset 0 -1px 2px rgba(0, 0, 0, 0.05);
+  border-color: rgba(200, 16, 46, 0.35);
 }
 
 .dark .value-card:hover {
-  box-shadow: 0 20px 40px rgba(77, 127, 191, 0.2), 0 10px 20px rgba(255, 77, 109, 0.15);
-  border-color: rgba(255, 77, 109, 0.5);
+  box-shadow: 
+    0 24px 48px rgba(0, 0, 0, 0.35),
+    0 12px 24px rgba(77, 127, 191, 0.2),
+    0 6px 12px rgba(255, 77, 109, 0.15),
+    inset 0 1px 3px rgba(255, 255, 255, 0.12),
+    inset 0 -1px 2px rgba(0, 0, 0, 0.2);
+  border-color: rgba(255, 77, 109, 0.45);
 }
 
 .card-header {
   display: flex;
   align-items: center;
   flex-direction: row;
+  gap: 1rem;
+  padding: 0.75rem 1rem;
+  background: linear-gradient(135deg, rgba(0, 51, 153, 0.06) 0%, rgba(200, 16, 46, 0.06) 100%);
+  border-radius: 14px;
+  margin-bottom: 0.5rem;
+  box-shadow: 
+    inset 0 1px 2px rgba(255, 255, 255, 0.5),
+    inset 0 -1px 2px rgba(0, 0, 0, 0.03);
+}
+
+.dark .card-header {
+  background: linear-gradient(135deg, rgba(77, 127, 191, 0.12) 0%, rgba(255, 77, 109, 0.12) 100%);
+  box-shadow: 
+    inset 0 1px 2px rgba(255, 255, 255, 0.08),
+    inset 0 -1px 2px rgba(0, 0, 0, 0.15);
 }
 
 .card-icon-wrapper {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 48px;
-  height: 48px;
-  border-radius: 12px;
-  background: linear-gradient(135deg, rgba(0, 51, 153, 0.15) 0%, rgba(200, 16, 46, 0.15) 100%);
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, rgba(0, 51, 153, 0.2) 0%, rgba(200, 16, 46, 0.2) 100%);
   flex-shrink: 0;
+  box-shadow: 
+    0 4px 10px rgba(0, 51, 153, 0.15),
+    inset 0 1px 2px rgba(255, 255, 255, 0.4),
+    inset 0 -1px 2px rgba(0, 0, 0, 0.1);
 }
 
 .dark .card-icon-wrapper {
-  background: linear-gradient(135deg, rgba(77, 127, 191, 0.2) 0%, rgba(255, 77, 109, 0.2) 100%);
+  background: linear-gradient(135deg, rgba(77, 127, 191, 0.25) 0%, rgba(255, 77, 109, 0.25) 100%);
+  box-shadow: 
+    0 4px 10px rgba(0, 0, 0, 0.3),
+    inset 0 1px 2px rgba(255, 255, 255, 0.15),
+    inset 0 -1px 2px rgba(0, 0, 0, 0.2);
 }
 
 .card-icon-wrapper svg {
@@ -413,17 +491,39 @@ const nextMeetup = ref(null) // Set to { date: '2026-02-15', time: '19:00', loca
   border: 1px solid rgba(0, 51, 153, 0.4);
   color: var(--text-light);
   transition: all 0.3s ease;
+  padding: 0.75rem 1.5rem;
+  margin: 0.25rem;
+  box-shadow: 
+    0 3px 10px rgba(0, 51, 153, 0.15),
+    inset 0 1px 2px rgba(255, 255, 255, 0.5),
+    inset 0 -1px 2px rgba(0, 0, 0, 0.08);
 }
 
 .dark .cta-tag {
   background: linear-gradient(135deg, rgba(77, 127, 191, 0.3) 0%, rgba(255, 77, 109, 0.3) 100%);
   border: 1px solid rgba(77, 127, 191, 0.5);
   color: var(--text-dark);
+  box-shadow: 
+    0 3px 10px rgba(0, 0, 0, 0.25),
+    inset 0 1px 2px rgba(255, 255, 255, 0.15),
+    inset 0 -1px 2px rgba(0, 0, 0, 0.15);
 }
 
 .cta-tag:hover {
-  transform: scale(1.05);
-  box-shadow: 0 5px 15px rgba(200, 16, 46, 0.3);
+  transform: scale(1.05) translateY(-2px);
+  box-shadow: 
+    0 8px 20px rgba(200, 16, 46, 0.35),
+    0 4px 10px rgba(0, 51, 153, 0.2),
+    inset 0 1px 3px rgba(255, 255, 255, 0.6),
+    inset 0 -1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.dark .cta-tag:hover {
+  box-shadow: 
+    0 8px 20px rgba(255, 77, 109, 0.35),
+    0 4px 10px rgba(77, 127, 191, 0.25),
+    inset 0 1px 3px rgba(255, 255, 255, 0.2),
+    inset 0 -1px 2px rgba(0, 0, 0, 0.2);
 }
 
 /* Responsive adjustments */

@@ -1,32 +1,53 @@
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref, onMounted, onUnmounted, computed } from 'vue'
 
-const scrolled = ref(false)
+const scrollY = ref(0)
+const documentHeight = ref(0)
+const windowHeight = ref(0)
 
-const handleScroll = () => {
-  scrolled.value = window.scrollY > 0
+const updateMeasurements = () => {
+  scrollY.value = window.scrollY
+  documentHeight.value = document.documentElement.scrollHeight
+  windowHeight.value = window.innerHeight
 }
 
+// Footer visible: at top (initial state) OR at bottom of page
+const isVisible = computed(() => {
+  // If page is not scrollable, always show footer
+  if (documentHeight.value <= windowHeight.value) return true
+  
+  // At top of page (initial state)
+  const atTop = scrollY.value === 0
+  
+  // At bottom of page (within 50px tolerance)
+  const atBottom = scrollY.value + windowHeight.value >= documentHeight.value - 50
+  
+  return atTop || atBottom
+})
+
 onMounted(() => {
-  window.addEventListener('scroll', handleScroll)
+  updateMeasurements()
+  window.addEventListener('scroll', updateMeasurements)
+  window.addEventListener('resize', updateMeasurements)
 })
 
 onUnmounted(() => {
-  window.removeEventListener('scroll', handleScroll)
+  window.removeEventListener('scroll', updateMeasurements)
+  window.removeEventListener('resize', updateMeasurements)
 })
 </script>
 
 <template>
-  <footer class="footer fixed bottom-0 left-0 right-0 z-40 transition-all duration-300" :class="{ 'opacity-0 pointer-events-none': !scrolled }">
-    <div class="footer-content py-4">
+  <footer class="footer fixed bottom-0 left-0 right-0 z-40 transition-all duration-500" :class="{ 'opacity-0 pointer-events-none translate-y-full': !isVisible }">
+    <div class="footer-content py-4 md:py-5">
       <!-- Centered content container matching page content -->
       <div class="footer-container">
-        <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 md:gap-8">
           <!-- Brand -->
           <span class="brand-text text-sm font-medium hidden sm:block">Radical Prospérité</span>
           
-          <!-- Social Icons - Horizontally aligned -->
-          <div class="social-icons flex flex-row justify-center items-center gap-4 sm:gap-6">
+          <!-- Social Icons - Horizontally aligned and centered -->
+          <div class="social-icons flex flex-row justify-center items-center gap-4 sm:gap-5 md:gap-6">
             <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Twitter/X">
               <FontAwesomeIcon icon="fa-brands fa-x-twitter" class="text-xl sm:text-2xl" />
             </a>
@@ -63,8 +84,11 @@ onUnmounted(() => {
     rgba(200, 16, 46, 0.95) 100%
   );
   backdrop-filter: blur(20px);
-  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.15);
-  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 
+    0 -8px 32px rgba(0, 0, 0, 0.15),
+    0 -4px 16px rgba(0, 51, 153, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  border-top: 1px solid rgba(255, 255, 255, 0.25);
 }
 
 .dark .footer {
@@ -74,30 +98,37 @@ onUnmounted(() => {
     rgba(140, 10, 30, 0.95) 100%
   );
   border-top: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 
+    0 -8px 32px rgba(0, 0, 0, 0.35),
+    0 -4px 16px rgba(0, 30, 100, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
-/* Footer container matching page content margins */
+/* Footer container - centered content */
 .footer-container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 1rem;
+  padding: 0 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 @media (min-width: 640px) {
   .footer-container {
-    padding: 0 2rem;
+    padding: 0 2.5rem;
   }
 }
 
 @media (min-width: 1024px) {
   .footer-container {
-    padding: 0 3rem;
+    padding: 0 3.5rem;
   }
 }
 
 @media (min-width: 1280px) {
   .footer-container {
-    padding: 0 4rem;
+    padding: 0 4.5rem;
   }
 }
 
@@ -134,26 +165,46 @@ onUnmounted(() => {
 .social-link {
   color: #1a1a2e;
   transition: all 0.3s ease;
-  padding: 0.5rem;
+  padding: 0.6rem;
   border-radius: 50%;
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 
+    0 2px 6px rgba(0, 0, 0, 0.1),
+    inset 0 1px 2px rgba(255, 255, 255, 0.4),
+    inset 0 -1px 2px rgba(0, 0, 0, 0.08);
 }
 
 .dark .social-link {
   color: #ffffff;
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 
+    0 2px 6px rgba(0, 0, 0, 0.25),
+    inset 0 1px 2px rgba(255, 255, 255, 0.12),
+    inset 0 -1px 2px rgba(0, 0, 0, 0.15);
 }
 
 .social-link:hover {
-  transform: scale(1.2) translateY(-2px);
+  transform: scale(1.2) translateY(-3px);
   color: #003399;
-  text-shadow: 0 0 20px rgba(0, 51, 153, 0.5);
+  background: rgba(255, 255, 255, 0.35);
+  box-shadow: 
+    0 6px 15px rgba(0, 51, 153, 0.3),
+    0 3px 8px rgba(0, 0, 0, 0.15),
+    inset 0 1px 3px rgba(255, 255, 255, 0.6),
+    inset 0 -1px 2px rgba(0, 0, 0, 0.1);
 }
 
 .dark .social-link:hover {
   color: #ff4d6d;
-  text-shadow: 0 0 20px rgba(255, 77, 109, 0.5);
+  background: rgba(255, 77, 109, 0.2);
+  box-shadow: 
+    0 6px 15px rgba(255, 77, 109, 0.35),
+    0 3px 8px rgba(0, 0, 0, 0.3),
+    inset 0 1px 3px rgba(255, 255, 255, 0.2),
+    inset 0 -1px 2px rgba(0, 0, 0, 0.2);
 }
 
 /* Responsive adjustments */

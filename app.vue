@@ -1,10 +1,10 @@
 <template>
   <div class="relative min-h-screen overflow-x-hidden">
-    <!-- Background animation -->
-    <div class="absolute inset-0 z-0" id="background"></div>
+    <!-- Background animation - Fixed to cover entire viewport -->
+    <div class="fixed inset-0 z-0" id="background"></div>
     
-    <!-- Diagonal bands overlay -->
-    <div class="absolute inset-0 z-0 pointer-events-none" id="bands"></div>
+    <!-- Diagonal bands overlay - Fixed to always be visible -->
+    <div class="fixed inset-0 z-0 pointer-events-none" id="bands"></div>
 
     <Navbar />
     <!-- Content -->
@@ -113,9 +113,9 @@ body {
   }
 }
 
-/* Diagonal bands with blue and red - MUCH SLOWER */
+/* Diagonal bands with blue and red - wider with gradient fade and pulse */
 #bands {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
@@ -133,28 +133,42 @@ body {
   background: repeating-linear-gradient(
     -45deg,
     transparent,
-    transparent 80px,
-    var(--accent-blue-light) 80px,
-    var(--accent-blue-light) 82px,
-    transparent 82px,
-    transparent 160px,
-    var(--accent-red-light) 160px,
-    var(--accent-red-light) 162px
+    transparent 70px,
+    rgba(0, 51, 153, 0) 70px,
+    rgba(0, 51, 153, 0.12) 85px,
+    rgba(77, 127, 191, 0.18) 100px,
+    rgba(0, 51, 153, 0.12) 115px,
+    rgba(0, 51, 153, 0) 130px,
+    transparent 130px,
+    transparent 200px,
+    rgba(200, 16, 46, 0) 200px,
+    rgba(200, 16, 46, 0.12) 215px,
+    rgba(255, 77, 109, 0.18) 230px,
+    rgba(200, 16, 46, 0.12) 245px,
+    rgba(200, 16, 46, 0) 260px,
+    transparent 260px
   );
-  animation: moveBands 120s linear infinite;
+  animation: moveBands 120s linear infinite, pulseBands 8s ease-in-out infinite;
 }
 
 .dark #bands::before {
   background: repeating-linear-gradient(
     -45deg,
     transparent,
-    transparent 80px,
-    var(--accent-blue-dark) 80px,
-    var(--accent-blue-dark) 82px,
-    transparent 82px,
-    transparent 160px,
-    var(--accent-red-dark) 160px,
-    var(--accent-red-dark) 162px
+    transparent 70px,
+    rgba(0, 51, 153, 0) 70px,
+    rgba(0, 51, 153, 0.2) 85px,
+    rgba(77, 127, 191, 0.35) 100px,
+    rgba(0, 51, 153, 0.2) 115px,
+    rgba(0, 51, 153, 0) 130px,
+    transparent 130px,
+    transparent 200px,
+    rgba(200, 16, 46, 0) 200px,
+    rgba(200, 16, 46, 0.2) 215px,
+    rgba(255, 77, 109, 0.35) 230px,
+    rgba(200, 16, 46, 0.2) 245px,
+    rgba(200, 16, 46, 0) 260px,
+    transparent 260px
   );
 }
 
@@ -168,28 +182,42 @@ body {
   background: repeating-linear-gradient(
     45deg,
     transparent,
-    transparent 120px,
-    rgba(0, 51, 153, 0.05) 120px,
-    rgba(0, 51, 153, 0.05) 122px,
-    transparent 122px,
-    transparent 240px,
-    rgba(200, 16, 46, 0.05) 240px,
-    rgba(200, 16, 46, 0.05) 242px
+    transparent 100px,
+    rgba(0, 51, 153, 0) 100px,
+    rgba(0, 51, 153, 0.06) 112px,
+    rgba(77, 127, 191, 0.1) 124px,
+    rgba(0, 51, 153, 0.06) 136px,
+    rgba(0, 51, 153, 0) 148px,
+    transparent 148px,
+    transparent 220px,
+    rgba(200, 16, 46, 0) 220px,
+    rgba(200, 16, 46, 0.06) 232px,
+    rgba(255, 77, 109, 0.1) 244px,
+    rgba(200, 16, 46, 0.06) 256px,
+    rgba(200, 16, 46, 0) 268px,
+    transparent 268px
   );
-  animation: moveBandsReverse 180s linear infinite;
+  animation: moveBandsReverse 180s linear infinite, pulseBandsAlt 10s ease-in-out infinite;
 }
 
 .dark #bands::after {
   background: repeating-linear-gradient(
     45deg,
     transparent,
-    transparent 120px,
-    rgba(77, 127, 191, 0.1) 120px,
-    rgba(77, 127, 191, 0.1) 122px,
-    transparent 122px,
-    transparent 240px,
-    rgba(255, 77, 109, 0.1) 240px,
-    rgba(255, 77, 109, 0.1) 242px
+    transparent 100px,
+    rgba(77, 127, 191, 0) 100px,
+    rgba(77, 127, 191, 0.12) 112px,
+    rgba(100, 150, 220, 0.18) 124px,
+    rgba(77, 127, 191, 0.12) 136px,
+    rgba(77, 127, 191, 0) 148px,
+    transparent 148px,
+    transparent 220px,
+    rgba(255, 77, 109, 0) 220px,
+    rgba(255, 77, 109, 0.12) 232px,
+    rgba(255, 120, 140, 0.18) 244px,
+    rgba(255, 77, 109, 0.12) 256px,
+    rgba(255, 77, 109, 0) 268px,
+    transparent 268px
   );
 }
 
@@ -198,7 +226,7 @@ body {
     transform: translate(0, 0);
   }
   100% {
-    transform: translate(160px, 160px);
+    transform: translate(260px, 260px);
   }
 }
 
@@ -207,7 +235,29 @@ body {
     transform: translate(0, 0);
   }
   100% {
-    transform: translate(-240px, 240px);
+    transform: translate(-268px, 268px);
+  }
+}
+
+@keyframes pulseBands {
+  0%, 100% {
+    opacity: 0.7;
+    filter: brightness(1);
+  }
+  50% {
+    opacity: 1;
+    filter: brightness(1.15);
+  }
+}
+
+@keyframes pulseBandsAlt {
+  0%, 100% {
+    opacity: 0.6;
+    filter: brightness(1);
+  }
+  50% {
+    opacity: 0.9;
+    filter: brightness(1.2);
   }
 }
 
