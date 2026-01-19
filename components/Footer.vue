@@ -46,25 +46,25 @@ onUnmounted(() => {
           <!-- Brand -->
           <span class="brand-text text-sm font-medium hidden sm:block">Radical Prospérité</span>
           
-          <!-- Social Icons - Horizontally aligned and centered -->
-          <div class="social-icons flex flex-row justify-center items-center gap-4 sm:gap-5 md:gap-6">
-            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Twitter/X">
-              <FontAwesomeIcon icon="fa-brands fa-x-twitter" class="text-xl sm:text-2xl" />
+          <!-- Social Icons - Horizontally aligned and centered with margins -->
+          <div class="social-icons flex flex-row justify-center items-center gap-3 sm:gap-4 md:gap-5 mx-4 sm:mx-6 md:mx-8">
+            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" class="social-link mx-1 sm:mx-1.5" aria-label="Twitter/X">
+              <FontAwesomeIcon icon="fa-brands fa-x-twitter" class="text-lg sm:text-xl" />
             </a>
-            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Facebook">
-              <FontAwesomeIcon icon="fa-brands fa-facebook" class="text-xl sm:text-2xl" />
+            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="social-link mx-1 sm:mx-1.5" aria-label="Facebook">
+              <FontAwesomeIcon icon="fa-brands fa-facebook" class="text-lg sm:text-xl" />
             </a>
-            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Instagram">
-              <FontAwesomeIcon icon="fa-brands fa-instagram" class="text-xl sm:text-2xl" />
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="social-link mx-1 sm:mx-1.5" aria-label="Instagram">
+              <FontAwesomeIcon icon="fa-brands fa-instagram" class="text-lg sm:text-xl" />
             </a>
-            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LinkedIn">
-              <FontAwesomeIcon icon="fa-brands fa-linkedin" class="text-xl sm:text-2xl" />
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="social-link mx-1 sm:mx-1.5" aria-label="LinkedIn">
+              <FontAwesomeIcon icon="fa-brands fa-linkedin" class="text-lg sm:text-xl" />
             </a>
-            <a href="https://discord.com" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Discord">
-              <FontAwesomeIcon icon="fa-brands fa-discord" class="text-xl sm:text-2xl" />
+            <a href="https://discord.com" target="_blank" rel="noopener noreferrer" class="social-link mx-1 sm:mx-1.5" aria-label="Discord">
+              <FontAwesomeIcon icon="fa-brands fa-discord" class="text-lg sm:text-xl" />
             </a>
-            <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="YouTube">
-              <FontAwesomeIcon icon="fa-brands fa-youtube" class="text-xl sm:text-2xl" />
+            <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="social-link mx-1 sm:mx-1.5" aria-label="YouTube">
+              <FontAwesomeIcon icon="fa-brands fa-youtube" class="text-lg sm:text-xl" />
             </a>
           </div>
           

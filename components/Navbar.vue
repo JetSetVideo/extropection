@@ -27,41 +27,42 @@ const navLinks = [
 
 <template>
   <!-- Main Navbar -->
-  <nav class="navbar fixed top-0 z-50 transition-all duration-300 mx-4 md:mx-8 lg:mx-12 mt-3 rounded-2xl" :class="{ 'opacity-0 pointer-events-none': !atTop }">
-    <div class="navbar-content flex items-center justify-between h-16 md:h-20 px-4 md:px-6 lg:px-8">
-      <!-- Logo/Home link -->
-      <NuxtLink to="/" class="home-link flex-shrink-0">
-        <FontAwesomeIcon icon="fa-solid fa-house" class="text-xl md:text-2xl" />
-      </NuxtLink>
+  <nav class="navbar fixed top-0 z-50 transition-all duration-300 mx-6 md:mx-10 lg:mx-16 xl:mx-24 mt-4 rounded-2xl" :class="{ 'opacity-0 pointer-events-none': !atTop }">
+    <div class="navbar-content flex items-center justify-between h-16 md:h-20 px-6 md:px-8 lg:px-10">
+      
+      <!-- Empty spacer for balance -->
+      <div class="flex-1"></div>
       
       <!-- Centered Title -->
-      <NuxtLink to="/" class="title-link absolute left-1/2 transform -translate-x-1/2">
-        <h1 class="title text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-center whitespace-nowrap">
+      <NuxtLink to="/" class="title-link flex-shrink-0">
+        <h1 class="title text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-center whitespace-nowrap">
           Radical Prospérité
         </h1>
       </NuxtLink>
       
       <!-- Right side: Adhesion button + Settings -->
-      <div class="flex items-center gap-3 md:gap-4 flex-shrink-0">
+      <div class="flex-1 flex items-center justify-end gap-3 md:gap-4">
         <!-- Adhesion Button -->
-        <NuxtLink to="/adhesion" class="adhesion-btn px-3 py-1.5 md:px-5 md:py-2.5 rounded-full text-sm md:text-base font-semibold transition-all duration-300 hover:scale-105">
-          <FontAwesomeIcon icon="fa-solid fa-user-plus" class="mr-1 md:mr-2" />
+        <NuxtLink to="/adhesion" class="adhesion-btn px-4 py-2 md:px-6 md:py-2.5 rounded-full text-sm md:text-base font-semibold transition-all duration-300 hover:scale-105 flex items-center">
+          <FontAwesomeIcon icon="fa-solid fa-user-plus" class="mr-1.5 md:mr-2" />
           <span class="hidden sm:inline">Adhésion</span>
         </NuxtLink>
         
         <!-- Settings -->
-        <Settings />
+        <div class="settings-wrapper">
+          <Settings />
+        </div>
       </div>
     </div>
 
     <!-- Sub Navigation Bar -->
-    <div class="sub-navbar border-t border-white/20">
-      <div class="flex items-center justify-center gap-1 sm:gap-2 md:gap-6 py-2 px-4 overflow-x-auto">
+    <div class="sub-navbar border-t border-white/20 mx-4 md:mx-6">
+      <div class="flex items-center justify-center gap-2 sm:gap-3 md:gap-5 py-2.5 px-4 overflow-x-auto">
         <NuxtLink 
           v-for="link in navLinks" 
           :key="link.path"
           :to="link.path"
-          class="nav-link flex items-center gap-1 md:gap-2 px-2 sm:px-3 md:px-4 py-1.5 md:py-2 rounded-lg text-xs sm:text-sm md:text-base font-medium transition-all duration-300 whitespace-nowrap"
+          class="nav-link flex items-center gap-1.5 md:gap-2 px-3 sm:px-4 md:px-5 py-2 md:py-2.5 rounded-xl text-xs sm:text-sm md:text-base font-medium transition-all duration-300 whitespace-nowrap"
         >
           <FontAwesomeIcon :icon="link.icon" class="text-sm md:text-base" />
           <span>{{ link.name }}</span>
@@ -245,25 +246,61 @@ const navLinks = [
   }
 }
 
+/* Settings wrapper styling */
+.settings-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.settings-wrapper :deep(button),
+.settings-wrapper :deep(.settings-btn) {
+  border-radius: 50%;
+  padding: 0.5rem;
+  box-shadow: 
+    0 3px 8px rgba(0, 0, 0, 0.15),
+    inset 0 1px 2px rgba(255, 255, 255, 0.4),
+    inset 0 -1px 2px rgba(0, 0, 0, 0.1);
+}
+
 /* Mobile responsiveness */
 @media (max-width: 480px) {
+  .navbar {
+    margin-left: 0.75rem;
+    margin-right: 0.75rem;
+    margin-top: 0.5rem;
+  }
+  
   .title {
-    font-size: 1.25rem;
+    font-size: 1rem;
   }
   
   .nav-link {
-    padding: 0.375rem 0.5rem;
+    padding: 0.375rem 0.625rem;
     font-size: 0.7rem;
+  }
+  
+  .adhesion-btn {
+    padding: 0.375rem 0.75rem;
+    font-size: 0.75rem;
   }
 }
 
 @media (max-width: 640px) {
   .sub-navbar {
-    padding: 0 0.25rem;
+    margin-left: 0.25rem;
+    margin-right: 0.25rem;
   }
   
   .sub-navbar .flex {
-    gap: 0.25rem;
+    gap: 0.375rem;
+  }
+}
+
+@media (min-width: 1536px) {
+  .navbar {
+    margin-left: 6rem;
+    margin-right: 6rem;
   }
 }
 </style>

@@ -7,159 +7,187 @@ const nextMeetup = ref(null) // Set to { date: '2026-02-15', time: '19:00', loca
 
 <template>
   <main class="main-content min-h-screen pb-24">
-    <!-- Content Container with centered margins -->
-    <div class="content-container">
-      <!-- Hero Section -->
-      <section class="hero-section mb-12 md:mb-16 text-center">
-        <div class="hero-badge inline-block px-4 py-2 rounded-full mb-6 text-sm font-medium">
-          🇫🇷 Parti Libertarien Parisien
-        </div>
-        <h1 class="hero-title text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
-          Système politique décentralisé autonome
-        </h1>
-        <p class="hero-subtitle text-lg sm:text-xl md:text-2xl max-w-3xl mx-auto opacity-90">
-          Bonté • Fierté • Force
-        </p>
-      </section>
+    <!-- Grey transparent background container -->
+    <div class="page-background">
+      <!-- Content Container with centered margins -->
+      <div class="content-container">
+        <!-- Hero Section -->
+        <section class="hero-section mb-10 md:mb-14 text-center mx-4 md:mx-8 lg:mx-12">
+          <h1 class="hero-title text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 leading-tight">
+            Système politique décentralisé autonome
+          </h1>
+          <div class="hero-badge inline-block px-4 py-2 rounded-full mb-4 text-sm font-medium">
+            🇫🇷 Parti Libertarien Parisien
+          </div>
+          <p class="hero-subtitle text-base sm:text-lg md:text-xl max-w-3xl mx-auto opacity-90">
+            Bonté • Fierté • Force
+          </p>
+        </section>
 
-      <!-- Quote Section -->
-      <section class="quote-section mb-12 md:mb-16 p-6 md:p-8 rounded-2xl">
-        <blockquote class="text-xl md:text-2xl italic text-center mb-4">
-          « La justice sans la force est impuissante ; la force sans la justice est tyrannique. »
-        </blockquote>
-        <p class="text-base md:text-lg text-center opacity-70">— Blaise Pascal</p>
-      </section>
+        <!-- Quote Section -->
+        <section class="quote-section mb-10 md:mb-14 p-5 md:p-7 rounded-2xl mx-4 md:mx-8 lg:mx-12">
+          <blockquote class="text-lg md:text-xl italic text-center mb-3">
+            « La justice sans la force est impuissante ; la force sans la justice est tyrannique. »
+          </blockquote>
+          <p class="text-sm md:text-base text-center opacity-70">— Blaise Pascal</p>
+        </section>
 
-      <!-- Next Meet-up Section -->
-      <section class="meetup-section mb-12 md:mb-16">
-        <h2 class="section-title text-2xl sm:text-3xl md:text-4xl font-bold mb-8 text-center">Prochain Meet-up</h2>
+        <!-- Next Meet-up Section -->
+        <section class="meetup-section mb-10 md:mb-14 mx-4 md:mx-8 lg:mx-12">
+          <h2 class="section-title text-xl sm:text-2xl md:text-3xl font-bold mb-6 text-center">Prochain Meet-up</h2>
         
-        <div v-if="nextMeetup" class="meetup-card p-6 md:p-8 rounded-2xl">
-          <div class="flex flex-col md:flex-row items-center md:items-start gap-6">
-            <div class="meetup-date-badge flex flex-col items-center justify-center p-4 rounded-xl min-w-24">
-              <span class="text-3xl font-bold">{{ new Date(nextMeetup.date).getDate() }}</span>
-              <span class="text-sm uppercase">{{ new Date(nextMeetup.date).toLocaleDateString('fr-FR', { month: 'short' }) }}</span>
-            </div>
-            <div class="flex-1 text-center md:text-left">
-              <h3 class="text-xl md:text-2xl font-bold mb-2">{{ nextMeetup.title }}</h3>
-              <div class="meetup-details flex flex-col sm:flex-row flex-wrap justify-center md:justify-start gap-4 text-sm opacity-80">
-                <span class="flex items-center justify-center md:justify-start gap-2">
-                  <FontAwesomeIcon icon="fa-solid fa-clock" />
-                  {{ nextMeetup.time }}
-                </span>
-                <span class="flex items-center justify-center md:justify-start gap-2">
-                  <FontAwesomeIcon icon="fa-solid fa-location-dot" />
-                  {{ nextMeetup.location }}
-                </span>
+          <div v-if="nextMeetup" class="meetup-card p-5 md:p-7 rounded-2xl">
+            <div class="flex flex-col md:flex-row items-center md:items-start gap-5">
+              <div class="meetup-date-badge flex flex-col items-center justify-center p-3 rounded-xl min-w-20">
+                <span class="text-2xl font-bold">{{ new Date(nextMeetup.date).getDate() }}</span>
+                <span class="text-xs uppercase">{{ new Date(nextMeetup.date).toLocaleDateString('fr-FR', { month: 'short' }) }}</span>
+              </div>
+              <div class="flex-1 text-center md:text-left">
+                <h3 class="text-lg md:text-xl font-bold mb-1.5">{{ nextMeetup.title }}</h3>
+                <div class="meetup-details flex flex-col sm:flex-row flex-wrap justify-center md:justify-start gap-3 text-sm opacity-80">
+                  <span class="flex items-center justify-center md:justify-start gap-2">
+                    <FontAwesomeIcon icon="fa-solid fa-clock" />
+                    {{ nextMeetup.time }}
+                  </span>
+                  <span class="flex items-center justify-center md:justify-start gap-2">
+                    <FontAwesomeIcon icon="fa-solid fa-location-dot" />
+                    {{ nextMeetup.location }}
+                  </span>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        
-        <div v-else class="meetup-empty p-8 md:p-12 rounded-2xl text-center">
-          <div class="meetup-empty-icon mb-4">
-            <FontAwesomeIcon icon="fa-solid fa-calendar-xmark" class="text-4xl md:text-5xl" />
-          </div>
-          <p class="text-lg md:text-xl font-medium opacity-80">Aucun meet-up prévu</p>
-          <p class="text-sm md:text-base opacity-60 mt-2">Suivez-nous pour être informé des prochains événements</p>
-        </div>
-      </section>
-
-      <!-- Mission Section -->
-      <section class="mission-section mb-12 md:mb-16 text-center">
-        <h3>Objectif:</h3> 
-        <p>Assurer la Gestion sociale optimale de la France</p>
-        <h2 class="section-title text-2xl sm:text-3xl md:text-4xl font-bold mb-6">Notre Mission</h2>
-        <p class="text-lg md:text-xl max-w-3xl mx-auto leading-relaxed">
-
-          Définir un nouveau modèle politique pour notre pays. Chaque génération devrait écrire ses lois. 
-          Offrir un appareil administratif efficace et transparent pour garantir la bonne gouvernance citoyenne de la France.
-          Dans notre société moderne, l'encre a été remplacée par le bit.
-          Propposer une application pour offrir aux citoyens une maitrise totale de la gestion de l'état.
-        </p>
-      </section>
-
-      <!-- Values Grid -->
-      <section class="values-section mb-12 md:mb-16">
-        <h2 class="section-title text-2xl sm:text-3xl md:text-4xl font-bold mb-8 text-center">Nos Valeurs</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <!-- Justice Card -->
-          <div class="value-card p-6 rounded-2xl">
-            <div class="card-header flex items-center gap-4 mb-4">
-              <div class="card-icon-wrapper">
-                <FontAwesomeIcon icon="fa-solid fa-scale-balanced" class="text-2xl md:text-3xl" />
-              </div>
-              <h3 class="text-xl md:text-2xl font-bold">Justice</h3>
+          
+          <div v-else class="meetup-empty p-6 md:p-10 rounded-2xl text-center">
+            <div class="meetup-empty-icon mb-3">
+              <FontAwesomeIcon icon="fa-solid fa-calendar-xmark" class="text-3xl md:text-4xl" />
             </div>
-            <p class="text-sm md:text-base opacity-80">
-              Instaurer un contrôle judiciaire strict des juges et des procureurs. 
-              Un suivi rigoureux de leurs jugements et des conséquences sur la société.
-            </p>
+            <p class="text-base md:text-lg font-medium opacity-80">Aucun meet-up prévu</p>
+            <p class="text-xs md:text-sm opacity-60 mt-1.5">Suivez-nous pour être informé des prochains événements</p>
           </div>
+        </section>
 
-          <!-- Liberté Card -->
-          <div class="value-card p-6 rounded-2xl">
-            <div class="card-header flex items-center gap-4 mb-4">
-              <div class="card-icon-wrapper">
-                <FontAwesomeIcon icon="fa-solid fa-dove" class="text-2xl md:text-3xl" />
+        <!-- Mission Section -->
+        <section class="mission-section mb-10 md:mb-14 text-center mx-4 md:mx-8 lg:mx-12">
+          <h3 class="text-base md:text-lg font-semibold mb-1">Objectif:</h3> 
+          <p class="text-sm md:text-base mb-4">Assurer la Gestion sociale optimale de la France</p>
+          <h2 class="section-title text-xl sm:text-2xl md:text-3xl font-bold mb-5">Notre Mission</h2>
+          <p class="text-sm md:text-base max-w-3xl mx-auto leading-relaxed">
+            Définir un nouveau modèle politique pour notre pays. Chaque génération devrait écrire ses lois. 
+            Offrir un appareil administratif efficace et transparent pour garantir la bonne gouvernance citoyenne de la France.
+            Dans notre société moderne, l'encre a été remplacée par le bit.
+            Proposer une application pour offrir aux citoyens une maîtrise totale de la gestion de l'état.
+          </p>
+        </section>
+
+        <!-- Values Grid -->
+        <section class="values-section mb-10 md:mb-14 mx-4 md:mx-8 lg:mx-12">
+          <h2 class="section-title text-xl sm:text-2xl md:text-3xl font-bold mb-6 text-center">Nos Valeurs</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+            <!-- Justice Card -->
+            <div class="value-card p-5 rounded-2xl">
+              <div class="card-header flex items-center gap-3 mb-2 px-3 py-2">
+                <div class="card-icon-wrapper">
+                  <FontAwesomeIcon icon="fa-solid fa-scale-balanced" class="text-xl md:text-2xl" />
+                </div>
+                <h3 class="text-lg md:text-xl font-bold">Justice</h3>
               </div>
-              <h3 class="text-xl md:text-2xl font-bold">Liberté</h3>
+              <p class="text-sm opacity-80 px-2">
+                Instaurer un contrôle judiciaire strict des juges et des procureurs. 
+                Un suivi rigoureux de leurs jugements et des conséquences sur la société.
+              </p>
             </div>
-            <p class="text-sm md:text-base opacity-80">
-              Défendre les libertés individuelles fondamentales. 
-              Réduire l'emprise de l'État sur la vie des citoyens.
-            </p>
-          </div>
 
-          <!-- Technologie Card -->
-          <div class="value-card p-6 rounded-2xl">
-            <div class="card-header flex items-center gap-4 mb-4">
-              <div class="card-icon-wrapper">
-                <FontAwesomeIcon icon="fa-solid fa-dove" class="text-2xl md:text-3xl" />
+            <!-- Liberté Card -->
+            <div class="value-card p-5 rounded-2xl">
+              <div class="card-header flex items-center gap-3 mb-2 px-3 py-2">
+                <div class="card-icon-wrapper">
+                  <FontAwesomeIcon icon="fa-solid fa-dove" class="text-xl md:text-2xl" />
+                </div>
+                <h3 class="text-lg md:text-xl font-bold">Liberté</h3>
               </div>
-              <h3 class="text-xl md:text-2xl font-bold">Technologie</h3>
+              <p class="text-sm opacity-80 px-2">
+                Défendre les libertés individuelles fondamentales. 
+                Réduire l'emprise de l'État sur la vie des citoyens.
+              </p>
             </div>
-            <p class="text-sm md:text-base opacity-80">
-              Intelligence artificielle pour la gestion de l'état et assister le citoyen dans la selection de ses opinions.
-              Blockchain pour garantir la transparence et la sécurité de la gestion de l'état.
-              Génétique pour l'agriculture et la médecine pour assurer la santé de la nation.
-              Robotique pour la gestion de l'état et la surveillance des citoyens.
-              Energie englobant toutes les sources afin d'assurer la pérennité de notre système économique.
 
-            </p>
-          </div>
-
-          <!-- Prospérité Card -->
-          <div class="value-card p-6 rounded-2xl">
-            <div class="card-header flex items-center gap-4 mb-4">
-              <div class="card-icon-wrapper">
-                <FontAwesomeIcon icon="fa-solid fa-chart-line" class="text-2xl md:text-3xl" />
+            <!-- Technologie Card -->
+            <div class="value-card p-5 rounded-2xl">
+              <div class="card-header flex items-center gap-3 mb-2 px-3 py-2">
+                <div class="card-icon-wrapper">
+                  <FontAwesomeIcon icon="fa-solid fa-microchip" class="text-xl md:text-2xl" />
+                </div>
+                <h3 class="text-lg md:text-xl font-bold">Technologie</h3>
               </div>
-              <h3 class="text-xl md:text-2xl font-bold">Prospérité</h3>
+              <p class="text-sm opacity-80 px-2">
+                Intelligence artificielle pour la gestion de l'état et assister le citoyen dans la selection de ses opinions.
+                Blockchain pour garantir la transparence et la sécurité de la gestion de l'état.
+                Génétique pour l'agriculture et la médecine pour assurer la santé de la nation.
+              </p>
             </div>
-            <p class="text-sm md:text-base opacity-80">
-              Favoriser l'entrepreneuriat et l'innovation. 
-              Alléger la fiscalité pour libérer le potentiel économique.
-            </p>
-          </div>
-        </div>
-      </section>
 
-      <!-- Call to Action -->
-      <section class="cta-section text-center p-8 md:p-12 rounded-2xl">
-        <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">Rejoignez le Mouvement</h2>
-        <p class="text-lg md:text-xl mb-8 opacity-90">
-          Suivez-nous sur les réseaux sociaux et participez à la construction d'une France prospère.
-        </p>
-        <p>
-          Donation:
-        </p>
-        <div class="flex flex-wrap justify-center gap-4">
-          <span class="cta-tag px-4 py-2 rounded-full text-sm font-medium">Bitcoin:</span>
-          <span class="cta-tag px-4 py-2 rounded-full text-sm font-medium">Ethereum:</span>
-          <span class="cta-tag px-4 py-2 rounded-full text-sm font-medium">Solana:</span>
-        </div>
-      </section>
+            <!-- Prospérité Card -->
+            <div class="value-card p-5 rounded-2xl">
+              <div class="card-header flex items-center gap-3 mb-2 px-3 py-2">
+                <div class="card-icon-wrapper">
+                  <FontAwesomeIcon icon="fa-solid fa-chart-line" class="text-xl md:text-2xl" />
+                </div>
+                <h3 class="text-lg md:text-xl font-bold">Prospérité</h3>
+              </div>
+              <p class="text-sm opacity-80 px-2">
+                Favoriser l'entrepreneuriat et l'innovation. 
+                Alléger la fiscalité pour libérer le potentiel économique.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Call to Action -->
+        <section class="cta-section text-center p-6 md:p-10 rounded-2xl mx-4 md:mx-8 lg:mx-12">
+          <h2 class="text-xl sm:text-2xl md:text-3xl font-bold mb-3">Rejoignez le Mouvement</h2>
+          <p class="text-sm md:text-base mb-6 opacity-90">
+            Suivez-nous sur les réseaux sociaux et participez à la construction d'une France prospère.
+          </p>
+          <p class="text-sm font-semibold mb-4">
+            Donation:
+          </p>
+          <div class="crypto-donations flex flex-col sm:flex-row flex-wrap justify-center items-center gap-4">
+            <!-- Bitcoin -->
+            <div class="crypto-card flex items-center gap-3 px-4 py-3 rounded-xl">
+              <div class="crypto-icon">
+                <FontAwesomeIcon icon="fa-brands fa-bitcoin" class="text-xl" />
+              </div>
+              <div class="crypto-info text-left">
+                <span class="crypto-name text-sm font-semibold block">Bitcoin</span>
+                <span class="crypto-address text-xs opacity-60">Adresse à venir...</span>
+              </div>
+            </div>
+            
+            <!-- Ethereum -->
+            <div class="crypto-card flex items-center gap-3 px-4 py-3 rounded-xl">
+              <div class="crypto-icon">
+                <FontAwesomeIcon icon="fa-brands fa-ethereum" class="text-xl" />
+              </div>
+              <div class="crypto-info text-left">
+                <span class="crypto-name text-sm font-semibold block">Ethereum</span>
+                <span class="crypto-address text-xs opacity-60">Adresse à venir...</span>
+              </div>
+            </div>
+            
+            <!-- Solana -->
+            <div class="crypto-card flex items-center gap-3 px-4 py-3 rounded-xl">
+              <div class="crypto-icon">
+                <FontAwesomeIcon icon="fa-solid fa-coins" class="text-xl" />
+              </div>
+              <div class="crypto-info text-left">
+                <span class="crypto-name text-sm font-semibold block">Solana</span>
+                <span class="crypto-address text-xs opacity-60">Adresse à venir...</span>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
     </div>
   </main>
 </template>
@@ -173,28 +201,61 @@ const nextMeetup = ref(null) // Set to { date: '2026-02-15', time: '19:00', loca
   color: var(--text-dark);
 }
 
+/* Page Background - Grey transparent */
+.page-background {
+  background: rgba(128, 128, 128, 0.08);
+  backdrop-filter: blur(2px);
+  border-radius: 24px;
+  margin: 0.5rem;
+  padding: 1rem 0.5rem;
+  box-shadow: 
+    0 4px 24px rgba(0, 0, 0, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+.dark .page-background {
+  background: rgba(0, 0, 0, 0.15);
+  box-shadow: 
+    0 4px 24px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+@media (min-width: 640px) {
+  .page-background {
+    margin: 1rem;
+    padding: 1.5rem 1rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .page-background {
+    margin: 1.5rem 2rem;
+    padding: 2rem 1.5rem;
+  }
+}
+
 /* Content Container - Centers all content with proper margins */
 .content-container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 1rem;
+  padding: 0 0.5rem;
 }
 
 @media (min-width: 640px) {
   .content-container {
-    padding: 0 2rem;
+    padding: 0 1rem;
   }
 }
 
 @media (min-width: 1024px) {
   .content-container {
-    padding: 0 3rem;
+    padding: 0 1.5rem;
   }
 }
 
 @media (min-width: 1280px) {
   .content-container {
-    padding: 0 4rem;
+    padding: 0 2rem;
   }
 }
 
@@ -406,11 +467,13 @@ const nextMeetup = ref(null) // Set to { date: '2026-02-15', time: '19:00', loca
   display: flex;
   align-items: center;
   flex-direction: row;
-  gap: 1rem;
-  padding: 0.75rem 1rem;
+  gap: 0.75rem;
+  padding: 0.5rem 0.75rem;
   background: linear-gradient(135deg, rgba(0, 51, 153, 0.06) 0%, rgba(200, 16, 46, 0.06) 100%);
-  border-radius: 14px;
-  margin-bottom: 0.5rem;
+  border-radius: 12px;
+  margin-bottom: 0.25rem;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
   box-shadow: 
     inset 0 1px 2px rgba(255, 255, 255, 0.5),
     inset 0 -1px 2px rgba(0, 0, 0, 0.03);
@@ -427,13 +490,15 @@ const nextMeetup = ref(null) // Set to { date: '2026-02-15', time: '19:00', loca
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 52px;
-  height: 52px;
-  border-radius: 14px;
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
   background: linear-gradient(135deg, rgba(0, 51, 153, 0.2) 0%, rgba(200, 16, 46, 0.2) 100%);
   flex-shrink: 0;
+  margin-left: 0.25rem;
+  margin-right: 0.25rem;
   box-shadow: 
-    0 4px 10px rgba(0, 51, 153, 0.15),
+    0 3px 8px rgba(0, 51, 153, 0.12),
     inset 0 1px 2px rgba(255, 255, 255, 0.4),
     inset 0 -1px 2px rgba(0, 0, 0, 0.1);
 }
@@ -441,7 +506,7 @@ const nextMeetup = ref(null) // Set to { date: '2026-02-15', time: '19:00', loca
 .dark .card-icon-wrapper {
   background: linear-gradient(135deg, rgba(77, 127, 191, 0.25) 0%, rgba(255, 77, 109, 0.25) 100%);
   box-shadow: 
-    0 4px 10px rgba(0, 0, 0, 0.3),
+    0 3px 8px rgba(0, 0, 0, 0.25),
     inset 0 1px 2px rgba(255, 255, 255, 0.15),
     inset 0 -1px 2px rgba(0, 0, 0, 0.2);
 }
@@ -524,6 +589,86 @@ const nextMeetup = ref(null) // Set to { date: '2026-02-15', time: '19:00', loca
     0 4px 10px rgba(77, 127, 191, 0.25),
     inset 0 1px 3px rgba(255, 255, 255, 0.2),
     inset 0 -1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* Crypto Donation Cards */
+.crypto-donations {
+  gap: 1rem;
+}
+
+.crypto-card {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(248, 249, 250, 0.85) 100%);
+  border: 1px solid rgba(0, 51, 153, 0.2);
+  border-radius: 14px;
+  transition: all 0.3s ease;
+  min-width: 180px;
+  box-shadow: 
+    0 4px 12px rgba(0, 51, 153, 0.08),
+    inset 0 1px 2px rgba(255, 255, 255, 0.8),
+    inset 0 -1px 2px rgba(0, 0, 0, 0.03);
+}
+
+.dark .crypto-card {
+  background: linear-gradient(135deg, rgba(40, 40, 55, 0.9) 0%, rgba(25, 25, 38, 0.85) 100%);
+  border: 1px solid rgba(77, 127, 191, 0.25);
+  box-shadow: 
+    0 4px 12px rgba(0, 0, 0, 0.2),
+    inset 0 1px 2px rgba(255, 255, 255, 0.08),
+    inset 0 -1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.crypto-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 
+    0 8px 20px rgba(0, 51, 153, 0.15),
+    inset 0 1px 3px rgba(255, 255, 255, 0.9),
+    inset 0 -1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.dark .crypto-card:hover {
+  box-shadow: 
+    0 8px 20px rgba(77, 127, 191, 0.2),
+    inset 0 1px 3px rgba(255, 255, 255, 0.12),
+    inset 0 -1px 2px rgba(0, 0, 0, 0.15);
+}
+
+.crypto-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(0, 51, 153, 0.15) 0%, rgba(200, 16, 46, 0.15) 100%);
+  box-shadow: 
+    inset 0 1px 2px rgba(255, 255, 255, 0.5),
+    inset 0 -1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.dark .crypto-icon {
+  background: linear-gradient(135deg, rgba(77, 127, 191, 0.2) 0%, rgba(255, 77, 109, 0.2) 100%);
+}
+
+.crypto-icon svg {
+  background: linear-gradient(135deg, #003399 0%, #c8102e 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.dark .crypto-icon svg {
+  background: linear-gradient(135deg, #4d7fbf 0%, #ff4d6d 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.crypto-name {
+  color: var(--text-light);
+}
+
+.dark .crypto-name {
+  color: var(--text-dark);
 }
 
 /* Responsive adjustments */

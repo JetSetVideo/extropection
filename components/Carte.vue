@@ -29,19 +29,18 @@ const eventsWithLocation = computed(() => {
 </script>
 
 <template>
-  <div class="carte-container">
-    <div class="carte-header mb-4">
-      <h3 class="text-xl md:text-2xl font-bold flex items-center gap-3">
+  <div class="carte-container compact">
+    <div class="carte-header mb-3">
+      <h3 class="text-base md:text-lg font-bold flex items-center gap-2">
         <FontAwesomeIcon icon="fa-solid fa-map-location-dot" />
-        Carte des Événements
+        Carte
       </h3>
-      <p class="text-sm opacity-70 mt-1">Découvrez où se déroulent nos prochaines rencontres</p>
     </div>
 
-    <!-- Map Container -->
-    <div class="map-wrapper rounded-xl overflow-hidden">
+    <!-- Map Container - Compact -->
+    <div class="map-wrapper compact rounded-xl overflow-hidden">
       <!-- Placeholder map with French regions -->
-      <div class="map-placeholder">
+      <div class="map-placeholder compact">
         <svg viewBox="0 0 400 400" class="w-full h-full">
           <!-- Background -->
           <rect fill="currentColor" class="map-bg" width="400" height="400"/>
@@ -126,25 +125,25 @@ const eventsWithLocation = computed(() => {
       </div>
     </Transition>
 
-    <!-- Events List -->
-    <div class="events-list mt-6">
-      <h4 class="text-lg font-semibold mb-3">Prochains lieux de rencontre</h4>
-      <div v-if="eventsWithLocation.length > 0" class="space-y-3">
+    <!-- Events List - Compact -->
+    <div class="events-list mt-4">
+      <h4 class="text-sm font-semibold mb-2">Lieux de rencontre</h4>
+      <div v-if="eventsWithLocation.length > 0" class="space-y-1.5">
         <div 
-          v-for="event in eventsWithLocation" 
+          v-for="event in eventsWithLocation.slice(0, 3)" 
           :key="event.id"
-          class="event-item p-3 rounded-lg cursor-pointer"
+          class="event-item p-2 rounded-lg cursor-pointer"
           @click="selectEvent(event)"
         >
           <div class="flex items-center justify-between">
-            <span class="font-medium">{{ event.location }}</span>
-            <span class="text-sm opacity-70">{{ event.date }}</span>
+            <span class="font-medium text-xs truncate">{{ event.location.split(' - ')[0] }}</span>
+            <span class="text-[10px] opacity-70">{{ new Date(event.date).toLocaleDateString('fr-FR', { day: 'numeric', month: 'short' }) }}</span>
           </div>
         </div>
       </div>
-      <div v-else class="no-events p-4 rounded-lg text-center">
-        <FontAwesomeIcon icon="fa-solid fa-map-marker-alt" class="text-2xl mb-2 opacity-50" />
-        <p class="text-sm opacity-70">Aucun lieu de rencontre prévu pour le moment</p>
+      <div v-else class="no-events p-3 rounded-lg text-center">
+        <FontAwesomeIcon icon="fa-solid fa-map-marker-alt" class="text-lg mb-1 opacity-50" />
+        <p class="text-xs opacity-70">Aucun lieu prévu</p>
       </div>
     </div>
   </div>
@@ -155,13 +154,23 @@ const eventsWithLocation = computed(() => {
   background: rgba(255, 255, 255, 0.9);
   border: 1px solid rgba(0, 51, 153, 0.2);
   border-radius: 1rem;
-  padding: 1.5rem;
+  padding: 1rem;
   backdrop-filter: blur(10px);
+  box-shadow: 
+    0 4px 16px rgba(0, 51, 153, 0.08),
+    inset 0 1px 2px rgba(255, 255, 255, 0.5);
+}
+
+.carte-container.compact {
+  padding: 0.875rem;
 }
 
 .dark .carte-container {
   background: rgba(30, 30, 45, 0.9);
   border: 1px solid rgba(77, 127, 191, 0.3);
+  box-shadow: 
+    0 4px 16px rgba(0, 0, 0, 0.2),
+    inset 0 1px 2px rgba(255, 255, 255, 0.05);
 }
 
 .carte-header h3 {
@@ -180,12 +189,20 @@ const eventsWithLocation = computed(() => {
 
 .map-wrapper {
   border: 2px solid rgba(0, 51, 153, 0.2);
-  height: 300px;
+  height: 220px;
   position: relative;
+  box-shadow: 
+    inset 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.map-wrapper.compact {
+  height: 180px;
 }
 
 .dark .map-wrapper {
   border-color: rgba(77, 127, 191, 0.3);
+  box-shadow: 
+    inset 0 2px 4px rgba(0, 0, 0, 0.15);
 }
 
 .map-placeholder {

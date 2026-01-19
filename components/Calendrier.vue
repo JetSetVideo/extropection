@@ -117,48 +117,47 @@ const closeEventPopup = () => {
 </script>
 
 <template>
-  <div class="calendrier-container">
-    <div class="calendrier-header mb-4">
-      <h3 class="text-xl md:text-2xl font-bold flex items-center gap-3">
+  <div class="calendrier-container compact">
+    <div class="calendrier-header mb-3">
+      <h3 class="text-base md:text-lg font-bold flex items-center gap-2">
         <FontAwesomeIcon icon="fa-solid fa-calendar-alt" />
-        Calendrier des Rencontres
+        Calendrier
       </h3>
-      <p class="text-sm opacity-70 mt-1">Planifiez votre participation aux événements</p>
     </div>
 
     <!-- Calendar Navigation -->
-    <div class="calendar-nav flex items-center justify-between mb-4">
-      <button @click="prevMonth" class="nav-btn p-2 rounded-lg">
-        <FontAwesomeIcon icon="fa-solid fa-chevron-left" />
+    <div class="calendar-nav flex items-center justify-between mb-3">
+      <button @click="prevMonth" class="nav-btn p-1.5 rounded-lg">
+        <FontAwesomeIcon icon="fa-solid fa-chevron-left" class="text-sm" />
       </button>
       
       <div class="text-center">
-        <h4 class="text-lg font-semibold">{{ monthNames[currentMonth] }} {{ currentYear }}</h4>
-        <button @click="goToToday" class="today-btn text-sm mt-1">
+        <h4 class="text-sm font-semibold">{{ monthNames[currentMonth] }} {{ currentYear }}</h4>
+        <button @click="goToToday" class="today-btn text-xs">
           Aujourd'hui
         </button>
       </div>
       
-      <button @click="nextMonth" class="nav-btn p-2 rounded-lg">
-        <FontAwesomeIcon icon="fa-solid fa-chevron-right" />
+      <button @click="nextMonth" class="nav-btn p-1.5 rounded-lg">
+        <FontAwesomeIcon icon="fa-solid fa-chevron-right" class="text-sm" />
       </button>
     </div>
 
-    <!-- Calendar Grid -->
-    <div class="calendar-grid">
+    <!-- Calendar Grid - Compact -->
+    <div class="calendar-grid compact">
       <!-- Day Headers -->
-      <div class="day-headers grid grid-cols-7 mb-2">
-        <div v-for="day in dayNames" :key="day" class="day-header text-center text-sm font-medium py-2">
-          {{ day }}
+      <div class="day-headers grid grid-cols-7 mb-1">
+        <div v-for="day in dayNames" :key="day" class="day-header text-center text-xs font-medium py-1">
+          {{ day.charAt(0) }}
         </div>
       </div>
       
-      <!-- Calendar Days -->
-      <div class="days-grid grid grid-cols-7 gap-1">
+      <!-- Calendar Days - Only 5 rows -->
+      <div class="days-grid grid grid-cols-7 gap-0.5">
         <div 
-          v-for="(dayInfo, index) in calendarDays" 
+          v-for="(dayInfo, index) in calendarDays.slice(0, 35)" 
           :key="index"
-          class="day-cell p-1 md:p-2 rounded-lg cursor-pointer transition-all duration-200"
+          class="day-cell p-0.5 md:p-1 rounded cursor-pointer transition-all duration-200"
           :class="{
             'other-month': !dayInfo.currentMonth,
             'today': dayInfo.isToday,
@@ -166,57 +165,43 @@ const closeEventPopup = () => {
           }"
           @click="selectDay(dayInfo)"
         >
-          <span class="day-number text-sm md:text-base">{{ dayInfo.day }}</span>
-          <div v-if="getEventsForDay(dayInfo.date).length > 0" class="event-dots mt-1 flex justify-center gap-0.5">
-            <span 
-              v-for="(event, i) in getEventsForDay(dayInfo.date).slice(0, 3)" 
-              :key="i"
-              class="event-dot"
-            ></span>
+          <span class="day-number text-xs">{{ dayInfo.day }}</span>
+          <div v-if="getEventsForDay(dayInfo.date).length > 0" class="event-dots flex justify-center">
+            <span class="event-dot"></span>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Upcoming Events List -->
-    <div class="upcoming-events mt-6">
-      <h4 class="text-lg font-semibold mb-3 flex items-center gap-2">
-        <FontAwesomeIcon icon="fa-solid fa-clock" />
-        Prochains Événements
+    <!-- Upcoming Events List - Compact -->
+    <div class="upcoming-events mt-4">
+      <h4 class="text-sm font-semibold mb-2 flex items-center gap-2">
+        <FontAwesomeIcon icon="fa-solid fa-clock" class="text-xs" />
+        Prochains
       </h4>
       
-      <div v-if="events.length > 0" class="events-list space-y-3">
+      <div v-if="events.length > 0" class="events-list space-y-2">
         <div 
-          v-for="event in events.slice(0, 5)" 
+          v-for="event in events.slice(0, 3)" 
           :key="event.id"
-          class="event-card p-3 rounded-lg"
+          class="event-card p-2 rounded-lg"
         >
-          <div class="flex items-start gap-3">
-            <div class="event-date-badge">
-              <span class="text-lg font-bold">{{ new Date(event.date).getDate() }}</span>
-              <span class="text-xs">{{ monthNames[new Date(event.date).getMonth()].slice(0, 3) }}</span>
+          <div class="flex items-center gap-2">
+            <div class="event-date-badge compact">
+              <span class="text-sm font-bold">{{ new Date(event.date).getDate() }}</span>
+              <span class="text-[10px]">{{ monthNames[new Date(event.date).getMonth()].slice(0, 3) }}</span>
             </div>
-            <div class="flex-1">
-              <h5 class="font-semibold">{{ event.title }}</h5>
-              <div class="flex items-center gap-3 text-sm opacity-70 mt-1">
-                <span class="flex items-center gap-1">
-                  <FontAwesomeIcon icon="fa-solid fa-clock" class="text-xs" />
-                  {{ event.time }}
-                </span>
-                <span class="flex items-center gap-1">
-                  <FontAwesomeIcon icon="fa-solid fa-location-dot" class="text-xs" />
-                  {{ event.location }}
-                </span>
-              </div>
+            <div class="flex-1 min-w-0">
+              <h5 class="font-medium text-xs truncate">{{ event.title }}</h5>
+              <span class="text-[10px] opacity-60">{{ event.time }} - {{ event.location.split(' - ')[0] }}</span>
             </div>
           </div>
         </div>
       </div>
       
-      <div v-else class="no-events p-4 rounded-lg text-center">
-        <FontAwesomeIcon icon="fa-solid fa-calendar-xmark" class="text-2xl mb-2 opacity-50" />
-        <p class="text-sm opacity-70">Aucun événement prévu pour le moment</p>
-        <p class="text-xs opacity-50 mt-1">Revenez bientôt pour découvrir nos prochaines rencontres</p>
+      <div v-else class="no-events p-3 rounded-lg text-center">
+        <FontAwesomeIcon icon="fa-solid fa-calendar-xmark" class="text-lg mb-1 opacity-50" />
+        <p class="text-xs opacity-70">Aucun événement prévu</p>
       </div>
     </div>
 
@@ -255,13 +240,23 @@ const closeEventPopup = () => {
   background: rgba(255, 255, 255, 0.9);
   border: 1px solid rgba(0, 51, 153, 0.2);
   border-radius: 1rem;
-  padding: 1.5rem;
+  padding: 1rem;
   backdrop-filter: blur(10px);
+  box-shadow: 
+    0 4px 16px rgba(0, 51, 153, 0.08),
+    inset 0 1px 2px rgba(255, 255, 255, 0.5);
+}
+
+.calendrier-container.compact {
+  padding: 0.875rem;
 }
 
 .dark .calendrier-container {
   background: rgba(30, 30, 45, 0.9);
   border: 1px solid rgba(77, 127, 191, 0.3);
+  box-shadow: 
+    0 4px 16px rgba(0, 0, 0, 0.2),
+    inset 0 1px 2px rgba(255, 255, 255, 0.05);
 }
 
 .calendrier-header h3 {
@@ -322,16 +317,24 @@ const closeEventPopup = () => {
 }
 
 .day-cell {
-  min-height: 40px;
+  min-height: 32px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   background: rgba(255, 255, 255, 0.5);
   border: 1px solid transparent;
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.3);
+}
+
+.compact .day-cell {
+  min-height: 26px;
+  padding: 2px;
 }
 
 .dark .day-cell {
   background: rgba(30, 30, 45, 0.5);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.05);
 }
 
 .day-cell:hover {
@@ -385,11 +388,19 @@ const closeEventPopup = () => {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-width: 50px;
-  padding: 0.5rem;
+  min-width: 40px;
+  padding: 0.375rem;
   background: linear-gradient(135deg, #003399 0%, #c8102e 100%);
   color: white;
-  border-radius: 0.5rem;
+  border-radius: 0.375rem;
+  box-shadow: 
+    0 2px 6px rgba(0, 51, 153, 0.2),
+    inset 0 1px 1px rgba(255, 255, 255, 0.3);
+}
+
+.event-date-badge.compact {
+  min-width: 32px;
+  padding: 0.25rem;
 }
 
 .dark .event-date-badge {
